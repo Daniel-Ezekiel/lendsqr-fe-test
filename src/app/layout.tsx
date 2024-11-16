@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.module.scss";
+import global from "./globals.module.scss";
 
 const workSans = localFont({
   src: "./fonts/work-sans/WorkSans-VariableFont_wght.woff",
@@ -31,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body
-        className={`${workSans.variable} ${avenirSansBook.variable} ${avenirSansBlack.variable}`}
+        className={`${workSans.variable} ${avenirSansBook.variable} ${avenirSansBlack.variable} ${global.html}`}
       >
         {children}
       </body>
