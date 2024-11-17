@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/assets/images/logo.svg";
 import LoginImg from "@/assets/images/sign-in.svg";
-import styles from "./login.module.scss";
+import styles from "./sass/login.module.scss";
 function Login() {
   return (
     <div className={styles.page}>
