@@ -1,5 +1,5 @@
-@use "../sass/variables.module.scss";
-@use "../sass/mixins.module.scss";
+@use "./sass/variables.module.scss";
+@use "./sass/mixins.module.scss";
 
 .page {
   min-height: 85dvh;
@@ -46,7 +46,7 @@
 
       @include mixins.desktop() {
         width: 17.5rem;
-        top: 17.5rem;
+        top: 15rem;
       }
     }
 
