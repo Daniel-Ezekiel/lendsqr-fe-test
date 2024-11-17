@@ -1,3 +1,161 @@
+@use "../sass/variables.module.scss";
+@use "../sass/mixins.module.scss";
+
 .page {
-  font-family: var(--font-avenir-sans-black);
+  min-height: 85dvh;
+  display: grid;
+  position: relative;
+  grid-template-rows: auto 1fr;
+  font-family: var(--font-avenir-next-regular);
+
+  @include mixins.tablet() {
+    min-height: 90dvh;
+    place-items: center;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  @include mixins.smallLaptop() {
+    min-height: 100dvh;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    align-items: stretch;
+  }
+
+  .imagesContainer {
+    padding: 1.2rem;
+
+    @include mixins.tablet() {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    @include mixins.smallLaptop() {
+      justify-content: center;
+    }
+
+    .logo {
+      width: 12.5rem;
+      height: auto;
+
+      @include mixins.smallLaptop() {
+        position: absolute;
+        width: 15rem;
+        top: 12.5rem;
+      }
+
+      @include mixins.desktop() {
+        width: 17.5rem;
+        top: 17.5rem;
+      }
+    }
+
+    .loginImgContainer {
+      display: none;
+      max-width: 100%;
+
+      @include mixins.tablet() {
+        display: block;
+      }
+
+      @include mixins.smallLaptop() {
+        margin-top: 8rem;
+      }
+
+      .loginImg {
+        width: 100%;
+      }
+    }
+  }
+
+  .formOverallContainer {
+    width: 100%;
+    max-width: 45rem;
+    padding: 2rem;
+    place-self: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+
+    @include mixins.tablet() {
+      max-width: 100%;
+    }
+
+    @include mixins.smallLaptop() {
+      place-self: unset;
+      justify-content: center;
+      box-shadow: 0px 15px 90px 0px #00000008;
+      text-align: start;
+      padding-left: 6rem;
+      padding-right: 6rem;
+    }
+
+    .formContainer {
+      @include mixins.smallLaptop() {
+        width: 45rem;
+        align-self: center;
+      }
+
+      .pageTitle {
+        margin: 0.5rem 0;
+
+        font-family: var(--font-avenir-next-bold);
+        font-size: 4rem;
+        letter-spacing: -0.25rem;
+        color: variables.$color__primary;
+      }
+
+      .formInstruction {
+        margin: 0.25rem 0;
+        color: variables.$color__primary-light;
+      }
+
+      .form {
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+
+        .formControl {
+          input {
+            width: 100%;
+            border: 0.2rem solid #545f7d26;
+            border-radius: 0.4rem;
+            padding: 1.25rem;
+            box-shadow: 0px 15px 90px 0px #00000008;
+
+            font-family: var(--font-avenir-next-regular);
+
+            &::placeholder {
+              color: variables.$color__primary-light;
+            }
+          }
+        }
+
+        .passwordResetLink {
+          align-self: start;
+          padding: 0 0 0.5rem;
+
+          font-family: var(--font-avenir-next-bold);
+          font-size: 1.2rem;
+          text-transform: uppercase;
+          color: variables.$color__secondary;
+        }
+
+        .submitButton {
+          margin-top: 1.2rem;
+          border-radius: 0.8rem;
+          padding: 1.25rem 0;
+          outline: none;
+          border: none;
+          background-color: variables.$color__secondary;
+          cursor: pointer;
+
+          font-family: var(--font-avenir-next-regular);
+          font-size: 1.6rem;
+          color: #fff;
+        }
+      }
+    }
+  }
 }

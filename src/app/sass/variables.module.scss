@@ -1,0 +1,24 @@
+$color__primary: #213f7d;
+$color__primary-light: #545f7d;
+$color__secondary: #39cdcc;
+$color__purple: #df18ff;
+$color__blue: #5718ff;
+$color__orange: #f55f44;
+$color__red: #ff3366;
+$color__tag-gray: #545f7d;
+$color__tag-yellow: #e9b200;
+$color__tag-red: #e4033b;
+$color__tag-green: #39cd62;
+
+.html {
+  font-size: 62.5%;
+}
+
+.body {
+  margin: 0;
+  font-size: 1.6rem;
+
+  * {
+    box-sizing: border-box;
+  }
+}
