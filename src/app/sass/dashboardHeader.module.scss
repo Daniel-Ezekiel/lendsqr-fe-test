@@ -1,0 +1,55 @@
+@use "./variables.module.scss";
+
+.header {
+  padding: 1.2rem;
+
+  .navbar {
+    display: flex;
+    align-items: center;
+
+    .logo {
+      max-width: 10rem;
+    }
+
+    .searchContainer {
+      margin-left: auto;
+
+      .navSearch {
+        display: none;
+      }
+
+      .searchButton {
+        height: 3.6rem;
+        width: 3.6rem;
+        padding: 1rem;
+        background-color: variables.$color__secondary;
+        outline: none;
+        border: none;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    .navbarLinks {
+      margin-left: 1.2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+
+      .icons {
+        width: 2.4rem;
+        height: 2.4rem;
+      }
+
+      .avatar {
+        width: 3.6rem;
+        height: 3.6rem;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+    }
+  }
+}
