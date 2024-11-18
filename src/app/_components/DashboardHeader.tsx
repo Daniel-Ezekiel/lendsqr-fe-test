@@ -2,10 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "@/app/sass/dashboardHeader.module.scss";
 import Logo from "@/assets/images/logo.svg";
-import Search from "@/assets/icons/search.svg";
+// import Search from "@/assets/icons/search.svg";
 import Docs from "@/assets/icons/docs.svg";
 import Avatar from "@/assets/images/profile.png";
 import Notification from "@/assets/icons/notification.svg";
+import { MenuIcon, SearchIcon } from "lucide-react";
 
 function DashboardHeader() {
   return (
@@ -24,7 +25,7 @@ function DashboardHeader() {
             className={styles.navSearch}
           />
           <button className={styles.searchButton}>
-            <Image src={Search} alt='search icon' />
+            <SearchIcon size={24} />
           </button>
         </div>
 
@@ -41,6 +42,9 @@ function DashboardHeader() {
               src={Avatar}
               alt='auth user avatar'
             />
+            <button className={styles.navButton}>
+              <MenuIcon size={24} />
+            </button>
           </div>
         </div>
       </nav>

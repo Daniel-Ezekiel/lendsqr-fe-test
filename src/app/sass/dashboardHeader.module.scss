@@ -19,10 +19,11 @@
       }
 
       .searchButton {
-        height: 3.6rem;
-        width: 3.6rem;
-        padding: 1rem;
-        background-color: variables.$color__secondary;
+        // height: 3.6rem;
+        // width: 3.6rem;
+        padding: 0.25rem;
+        background-color: transparent;
+        color: variables.$color__primary;
         outline: none;
         border: none;
         border-radius: 50%;
@@ -49,6 +50,13 @@
         height: 3.6rem;
         object-fit: cover;
         border-radius: 50%;
+      }
+
+      .navButton {
+        background: transparent;
+        outline: none;
+        border: none;
+        color: variables.$color__primary;
       }
     }
   }
