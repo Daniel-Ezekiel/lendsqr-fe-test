@@ -35,7 +35,7 @@ function DashboardHeader() {
           <div className={styles.navbarLinks}>
             <Link href='' className={styles.navLink}>
               <BookOpenTextIcon className={styles.docsIcon} size={24} />
-              <span className={styles.docssText}>Docs</span>
+              <span className={styles.docsText}>Docs</span>
             </Link>
 
             <Button>
