@@ -5,6 +5,7 @@ import Logo from "@/assets/images/logo.svg";
 // import Search from "@/assets/icons/search.svg";
 // import Docs from "@/assets/icons/docs.svg";
 import Avatar from "@/assets/images/profile.png";
+import Dropdown from "@/assets/icons/dropdown-arrow.svg";
 import Notification from "@/assets/icons/notification.svg";
 import { BookOpenTextIcon, MenuIcon, SearchIcon } from "lucide-react";
 import Button from "./Button";
@@ -21,7 +22,7 @@ function DashboardHeader() {
           <input
             id='search'
             name='search'
-            placeholder='search for anything'
+            placeholder='Search for anything'
             type='text'
             className={styles.navSearch}
           />
@@ -32,9 +33,10 @@ function DashboardHeader() {
 
         <div>
           <div className={styles.navbarLinks}>
-            <Button>
-              <BookOpenTextIcon size={24} />
-            </Button>
+            <Link href='' className={styles.navLink}>
+              <BookOpenTextIcon className={styles.docsIcon} size={24} />
+              <span className={styles.docssText}>Docs</span>
+            </Link>
 
             <Button>
               <Image
@@ -44,11 +46,17 @@ function DashboardHeader() {
               />
             </Button>
 
-            <Button>
+            <Button className={styles.avatarButton}>
               <Image
                 className={styles.avatar}
                 src={Avatar}
                 alt='auth user avatar'
+              />
+              <span className={styles.avatarName}>Adedeji</span>
+              <Image
+                className={styles.dropdown}
+                src={Dropdown}
+                alt='dropdown icon'
               />
             </Button>
 

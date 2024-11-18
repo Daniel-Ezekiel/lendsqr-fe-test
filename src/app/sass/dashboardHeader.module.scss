@@ -1,7 +1,8 @@
 @use "./variables.module.scss";
+@use "./mixins.module.scss";
 
 .header {
-  padding: 1.2rem;
+  padding: 1.6rem;
 
   .navbar {
     display: flex;
@@ -9,27 +10,61 @@
 
     .logo {
       max-width: 10rem;
+
+      @include mixins.tablet() {
+        max-width: 14.5rem;
+      }
     }
 
     .searchContainer {
       margin-left: auto;
 
+      @include mixins.tablet() {
+        margin-right: auto;
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        border-radius: 0.8rem;
+        overflow: hidden;
+        min-width: 20rem;
+        width: 25rem;
+      }
+
+      @include mixins.smallLaptop() {
+        width: 35rem;
+      }
+
       .navSearch {
         display: none;
+        font-family: var(--font-work-sans);
+
+        &::placeholder {
+          font-family: var(--font-work-sans);
+          font-size: 1.4rem;
+        }
+
+        @include mixins.tablet() {
+          width: 100%;
+          min-height: 100%;
+          display: block;
+          padding: 1.2rem;
+          border: 0.2rem solid #545f7d26;
+          border-right: none;
+          border-radius: 0.8rem 0 0 0.8rem;
+        }
       }
 
       .searchButton {
         // height: 3.6rem;
         // width: 3.6rem;
         padding: 0.25rem;
-        background-color: transparent;
         color: variables.$color__primary;
-        outline: none;
-        border: none;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+
+        @include mixins.tablet() {
+          padding: 1rem 1.5rem;
+          background-color: variables.$color__secondary;
+          color: #fff;
+        }
       }
     }
 
@@ -40,23 +75,56 @@
       align-items: center;
       gap: 1rem;
 
+      @include mixins.tablet() {
+        margin-left: auto;
+      }
+
+      .navLink {
+        color: variables.$color__primary;
+
+        .docsIcon {
+          @include mixins.tablet() {
+            display: none;
+          }
+        }
+
+        .docsText {
+          display: none;
+
+          @include mixins.tablet() {
+            display: block;
+          }
+        }
+      }
+
       .icons {
         width: 2.4rem;
         height: 2.4rem;
       }
 
-      .avatar {
-        width: 3.6rem;
-        height: 3.6rem;
-        object-fit: cover;
-        border-radius: 50%;
+      .avatarButton {
+        font-family: var(--font-work-sans);
+        color: variables.$color__primary;
+
+        .avatar {
+          width: 4.8rem;
+          height: 4.8rem;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+
+        .avatarName {
+          margin-left: 0.5rem;
+          margin-right: 0.5rem;
+        }
       }
 
       .navButton {
-        background: transparent;
-        outline: none;
-        border: none;
         color: variables.$color__primary;
+
+        @include mixins.desktop() {
+          display: none;
+        }
       }
     }
   }
