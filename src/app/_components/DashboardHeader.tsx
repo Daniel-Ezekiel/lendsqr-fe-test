@@ -3,10 +3,11 @@ import Link from "next/link";
 import styles from "@/app/sass/dashboardHeader.module.scss";
 import Logo from "@/assets/images/logo.svg";
 // import Search from "@/assets/icons/search.svg";
-import Docs from "@/assets/icons/docs.svg";
+// import Docs from "@/assets/icons/docs.svg";
 import Avatar from "@/assets/images/profile.png";
 import Notification from "@/assets/icons/notification.svg";
-import { MenuIcon, SearchIcon } from "lucide-react";
+import { BookOpenTextIcon, MenuIcon, SearchIcon } from "lucide-react";
+import Button from "./Button";
 
 function DashboardHeader() {
   return (
@@ -24,27 +25,36 @@ function DashboardHeader() {
             type='text'
             className={styles.navSearch}
           />
-          <button className={styles.searchButton}>
+          <Button className={styles.searchButton}>
             <SearchIcon size={24} />
-          </button>
+          </Button>
         </div>
 
         <div>
           <div className={styles.navbarLinks}>
-            <Image className={styles.icons} src={Docs} alt='docs icon' />
-            <Image
-              className={styles.icons}
-              src={Notification}
-              alt='notification icon'
-            />
-            <Image
-              className={styles.avatar}
-              src={Avatar}
-              alt='auth user avatar'
-            />
-            <button className={styles.navButton}>
+            <Button>
+              <BookOpenTextIcon size={24} />
+            </Button>
+
+            <Button>
+              <Image
+                className={styles.icons}
+                src={Notification}
+                alt='notification icon'
+              />
+            </Button>
+
+            <Button>
+              <Image
+                className={styles.avatar}
+                src={Avatar}
+                alt='auth user avatar'
+              />
+            </Button>
+
+            <Button className={styles.navButton}>
               <MenuIcon size={24} />
-            </button>
+            </Button>
           </div>
         </div>
       </nav>

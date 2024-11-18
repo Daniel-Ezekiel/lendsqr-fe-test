@@ -3,6 +3,7 @@ import Image from "next/image";
 import Logo from "@/assets/images/logo.svg";
 import LoginImg from "@/assets/images/sign-in.svg";
 import styles from "./sass/login.module.scss";
+import Button from "./_components/Button";
 function Login() {
   return (
     <div className={styles.page}>
@@ -38,9 +39,9 @@ function Login() {
               Forgot Password?
             </Link>
 
-            <button className={styles.submitButton} type='button'>
+            <Button className={styles.submitButton} type='button'>
               Log in
-            </button>
+            </Button>
           </form>
         </div>
       </div>
