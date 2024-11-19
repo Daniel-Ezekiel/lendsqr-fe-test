@@ -1,0 +1,42 @@
+@use "./variables.module.scss";
+
+.statsCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 1.5rem;
+  background-color: #fff;
+  box-shadow: 3px 5px 20px 0px #0000000a;
+
+  .bgUsers {
+    background-color: variables.$color__purple;
+    opacity: 0.1;
+  }
+
+  .bgActiveUsers {
+    background-color: variables.$color__blue;
+    opacity: 0.1;
+  }
+
+  .bgLoanUsers {
+    background-color: variables.$color__orange;
+    opacity: 0.1;
+  }
+
+  .bgSavingUsers {
+    background-color: variables.$color__red;
+    opacity: 0.1;
+  }
+
+  .statsCardTitle {
+    font-weight: 500;
+    color: variables.$color__primary-light;
+  }
+
+  .statsCardCount {
+    font-weight: 600;
+    color: variables.$color__primary;
+  }
+}

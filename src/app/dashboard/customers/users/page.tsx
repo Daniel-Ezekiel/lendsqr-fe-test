@@ -2,6 +2,11 @@
 import DashboardLayout from "@/app/_layouts/DashboardLayout";
 import styles from "@/app/sass/dashboard.module.scss";
 import { useQuery } from "@tanstack/react-query";
+import StatsCard from "./_components/StatsCard";
+import UsersIcon from "@/assets/icons/users.svg";
+import ActiveUsersIcon from "@/assets/icons/active-users.svg";
+import LoanUsersIcon from "@/assets/icons/loan-users.svg";
+import SavingUsersIcon from "@/assets/icons/savings-users.svg";
 
 function Dashboard() {
   const { isPending, error, data, isFetching } = useQuery({
@@ -15,14 +20,19 @@ function Dashboard() {
     },
   });
 
-  console.log(!isPending && !isFetching && data);
+  console.log(!isPending && !isFetching && !error && data);
 
   return (
     <DashboardLayout>
       <section className={styles.sectionMain}>
         <h1>Users</h1>
 
-        <div></div>
+        <div>
+          <StatsCard imgSrc={UsersIcon} title='Users' count={2453} />
+          <StatsCard imgSrc={ActiveUsersIcon} title='Users' count={2453} />
+          <StatsCard imgSrc={LoanUsersIcon} title='Users' count={2453} />
+          <StatsCard imgSrc={SavingUsersIcon} title='Users' count={2453} />
+        </div>
       </section>
     </DashboardLayout>
   );
