@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./global.css";
 import variables from "./sass/variables.module.scss";
+import ServiceProvider from "./_components/ServiceProvider";
 
 const workSans = localFont({
   src: "./fonts/work-sans/WorkSans-VariableFont_wght.woff",
@@ -31,11 +32,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body
-        className={`${workSans.variable} ${avenirNextRegular.variable} ${avenirNextBold.variable} ${variables.body} `}
-      >
-        {children}
-      </body>
+      <ServiceProvider>
+        <body
+          className={`${workSans.variable} ${avenirNextRegular.variable} ${avenirNextBold.variable} ${variables.body} `}
+        >
+          {children}
+        </body>
+      </ServiceProvider>
     </html>
   );
 }
