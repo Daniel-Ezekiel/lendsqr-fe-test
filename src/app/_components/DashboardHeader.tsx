@@ -7,10 +7,16 @@ import Logo from "@/assets/images/logo.svg";
 import Avatar from "@/assets/images/profile.png";
 import Dropdown from "@/assets/icons/dropdown-arrow.svg";
 import Notification from "@/assets/icons/notification.svg";
-import { BookOpenTextIcon, MenuIcon, SearchIcon } from "lucide-react";
+import { BookOpenTextIcon, MenuIcon, SearchIcon, XIcon } from "lucide-react";
 import Button from "./Button";
 
-function DashboardHeader() {
+function DashboardHeader({
+  sidebarOpenStatus,
+  toggleSidebarStatus,
+}: {
+  sidebarOpenStatus: boolean;
+  toggleSidebarStatus: () => void;
+}) {
   return (
     <header className={styles.header}>
       <nav className={styles.navbar}>
@@ -60,8 +66,8 @@ function DashboardHeader() {
               />
             </Button>
 
-            <Button className={styles.navButton}>
-              <MenuIcon size={24} />
+            <Button className={styles.navButton} onClick={toggleSidebarStatus}>
+              {sidebarOpenStatus ? <XIcon size={24} /> : <MenuIcon size={24} />}
             </Button>
           </div>
         </div>

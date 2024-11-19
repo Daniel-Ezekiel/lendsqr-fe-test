@@ -6,14 +6,27 @@
   position: fixed;
   height: 100dvh;
   overflow: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
   top: 7.2rem;
-  left: 0;
+  left: -100dvh;
   box-shadow: 0px 5px 20px 0px #0000000a;
   background-color: #fff;
   padding: 1.8rem 0 4rem;
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
+  transition: all ease-in-out 0.5s;
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @include mixins.desktop {
+    min-width: 28rem;
+    left: 0;
+  }
 
   .switchOrganization,
   .dashboardLink {
@@ -45,9 +58,19 @@
       display: flex;
       align-items: center;
       gap: 1.75rem;
-      padding: 0.8rem 4rem;
+      padding: 1.2rem 4rem;
       color: #545f7d;
       text-decoration: none;
     }
+  }
+}
+
+.openSidebar {
+  left: 0;
+  transition: all ease-in-out 0.5s;
+
+  @include mixins.desktop {
+    min-width: 28rem;
+    left: 0;
   }
 }

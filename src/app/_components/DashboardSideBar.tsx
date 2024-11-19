@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "@/app/sass/dashboardSidebar.module.scss";
@@ -5,9 +6,15 @@ import Organization from "@/assets/icons/organization.svg";
 import Dashboard from "@/assets/icons/dashboard.svg";
 import { sideBarLinks } from "../utils/dashboardSidebarLinks";
 
-function DashboardSideBar() {
+function DashboardSideBar({
+  sidebarOpenStatus,
+}: {
+  sidebarOpenStatus: boolean;
+}) {
   return (
-    <aside className={styles.sidebar}>
+    <aside
+      className={`${styles.sidebar} ${sidebarOpenStatus && styles.openSidebar}`}
+    >
       <div className={styles.switchOrganization}>
         <Image src={Organization} alt='icon' />
         Switch Organization

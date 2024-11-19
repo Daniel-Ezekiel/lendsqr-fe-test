@@ -5,11 +5,15 @@ interface ButtonTypes {
   children: React.ReactNode | string;
   className?: string;
   type?: string;
+  onClick?: () => void;
 }
 
-function Button({ children, className }: ButtonTypes) {
+function Button({ children, className, onClick }: ButtonTypes) {
   return (
-    <button className={`${className} ${styles.buttonDefault}`}>
+    <button
+      className={`${className} ${styles.buttonDefault}`}
+      onClick={onClick}
+    >
       {children}
     </button>
   );
