@@ -5,7 +5,7 @@ function Dashboard() {
   return (
     <DashboardLayout>
       <section className={styles.sectionMain}>
-        <h1>LendSqr Users</h1>
+        <h1>Users</h1>
       </section>
     </DashboardLayout>
   );

@@ -9,9 +9,9 @@
 }
 
 .sidebarAndMainContainer {
-  margin-top: 8.2rem;
+  margin-top: 7.2rem;
 
   @include mixins.desktop {
-    margin-left: 30rem;
+    margin-left: 28rem;
   }
 }
