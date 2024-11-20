@@ -7,6 +7,7 @@ import UsersIcon from "@/assets/icons/users.svg";
 import ActiveUsersIcon from "@/assets/icons/active-users.svg";
 import LoanUsersIcon from "@/assets/icons/loan-users.svg";
 import SavingUsersIcon from "@/assets/icons/savings-users.svg";
+import UsersTable from "./_components/UsersTable";
 
 function Dashboard() {
   const { isPending, error, data, isFetching } = useQuery({
@@ -34,13 +35,23 @@ function Dashboard() {
             title='Active Users'
             count={2453}
           />
-          <StatsCard imgSrc={LoanUsersIcon} title='Loan Users' count={2453} />
+          <StatsCard
+            imgSrc={LoanUsersIcon}
+            title='Users with Loans'
+            count={12453}
+          />
           <StatsCard
             imgSrc={SavingUsersIcon}
-            title='Savings Users'
-            count={2453}
+            title='Users with Savings'
+            count={102453}
           />
         </div>
+      </section>
+
+      <section className={styles.sectionTable}>
+        <UsersTable
+          data={(!isPending && !isFetching && !error && data) || []}
+        />
       </section>
     </DashboardLayout>
   );

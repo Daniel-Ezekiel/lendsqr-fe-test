@@ -1,4 +1,5 @@
 @use "./variables.module.scss";
+@use "./mixins.module.scss";
 
 .statsCard {
   display: flex;
@@ -39,6 +40,7 @@
 
   .statsCardTitle {
     font-weight: 500;
+    text-transform: uppercase;
     color: variables.$color__primary-light;
   }
 
@@ -46,5 +48,9 @@
     font-weight: 600;
     font-size: 2rem;
     color: variables.$color__primary;
+
+    @include mixins.tablet() {
+      font-size: 2.4rem;
+    }
   }
 }

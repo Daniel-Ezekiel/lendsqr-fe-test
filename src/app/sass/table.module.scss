@@ -1,0 +1,43 @@
+@use "./variables.module.scss";
+
+.tableContainer {
+  padding: 1.25rem 1.6rem;
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+  border-radius: 0.8rem;
+  background-color: #fff;
+  overflow: auto;
+  box-shadow: 3px 5px 20px 0px #0000000a;
+
+  .table {
+    width: 100%;
+  }
+
+  .tr {
+    border-bottom: 0.1rem solid variables.$color__primary-light;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .th {
+    text-align: left;
+    width: max-content;
+    padding: 1.25rem 1.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: variables.$color__primary;
+  }
+
+  .td {
+    padding: 1.25rem;
+    text-transform: capitalize;
+    color: variables.$color__primary-light;
+  }
+
+  .tableLink {
+    color: variables.$color__primary-light;
+  }
+}

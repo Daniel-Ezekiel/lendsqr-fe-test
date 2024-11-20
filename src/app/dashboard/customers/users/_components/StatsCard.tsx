@@ -10,16 +10,16 @@ type statsCardTypes = {
 type imgColorTypes = {
   users: string;
   "active users": string;
-  "loan users": string;
-  "savings users": string;
+  "users with loans": string;
+  "users with savings": string;
 };
 
 function StatsCard({ imgSrc, title, count }: statsCardTypes) {
   const imgColor = {
     users: styles.bgUsers,
     "active users": styles.bgActiveUsers,
-    "loan users": styles.bgLoanUsers,
-    "savings users": styles.bgSavingUsers,
+    "users with loans": styles.bgLoanUsers,
+    "users with savings": styles.bgSavingUsers,
   };
 
   return (
@@ -32,7 +32,7 @@ function StatsCard({ imgSrc, title, count }: statsCardTypes) {
         <Image src={imgSrc} alt='icon' />
       </div>
       <span className={styles.statsCardTitle}>{title}</span>
-      <span className={styles.statsCardCount}>{count}</span>
+      <span className={styles.statsCardCount}>{count.toLocaleString()}</span>
     </div>
   );
 }
