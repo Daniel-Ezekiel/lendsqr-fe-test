@@ -69,7 +69,9 @@ function User() {
                 width={64}
                 height={64}
               />
-              <h2 className={styles.userName}>Grace Effiom</h2>
+              <h2 className={styles.userName}>{`${
+                (user as UserTypes)?.profile?.firstName
+              } ${(user as UserTypes)?.profile?.lastName}`}</h2>
               <span className={styles.userAccountId}>LSQFf587g90</span>
             </div>
 
@@ -79,9 +81,14 @@ function User() {
             </div>
 
             <div className={styles.userBankDetailsContainer}>
-              <span className={styles.userBankBalance}>#200,000</span>
+              <span className={styles.userBankBalance}>
+                ₦
+                {(+(user as UserTypes)?.accountBalance * 1000).toLocaleString(
+                  "en-GB"
+                )}
+              </span>
               <span className={styles.userBankName}>
-                9912345678/Providus Bank
+                {(user as UserTypes)?.accountNumber}/Providus Bank
               </span>
             </div>
           </div>
