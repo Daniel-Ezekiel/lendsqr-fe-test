@@ -14,4 +14,12 @@
   @include mixins.desktop {
     margin-left: 28rem;
   }
+
+  .main {
+    padding: 2rem;
+
+    @include mixins.tablet() {
+      padding: 4rem 6rem;
+    }
+  }
 }

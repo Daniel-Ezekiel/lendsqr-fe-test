@@ -1,10 +1,12 @@
 @use "./variables.module.scss";
 
 .buttonDefault {
+  font-family: var(--font-work-sans);
   background: transparent;
   outline: none;
   border: none;
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }

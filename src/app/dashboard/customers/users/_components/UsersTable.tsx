@@ -6,49 +6,7 @@ import {
 } from "@tanstack/react-table";
 import styles from "@/app/sass/table.module.scss";
 import Link from "next/link";
-
-type User = {
-  createdAt: string;
-  orgName: string;
-  userName: string;
-  email: string;
-  phoneNumber: string;
-  lastActiveDate: string;
-  profile: {
-    firstName: string;
-    lastName: string;
-    phoneNumber: string;
-    avatar: string;
-    gender: string;
-    bvn: string;
-    address: string;
-    currency: string;
-  };
-  guarantor: {
-    firstName: string;
-    lastName: string;
-    phoneNumber: string;
-    gender: string;
-    address: string;
-  };
-  accountBalance: string;
-  accountNumber: string;
-  socials: {
-    facebook: string;
-    instagram: string;
-    twitter: string;
-  };
-  education: {
-    level: string;
-    employmentStatus: string;
-    sector: string;
-    duration: string;
-    officeEmail: string;
-    monthlyIncome: string[];
-    loanRepayment: string;
-  };
-  id: string;
-};
+import User from "@/app/_types/user.types";
 
 const columnHelper = createColumnHelper<User>();
 
@@ -70,7 +28,7 @@ const columns = [
       return (
         <Link
           className={styles.tableLink}
-          href={`/dashboard/customers/users/${info.row.id}`}
+          href={`/dashboard/customers/users/${info.row.original.id}`}
         >
           {info.getValue()}
         </Link>

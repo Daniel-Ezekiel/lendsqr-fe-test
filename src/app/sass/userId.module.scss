@@ -1,0 +1,130 @@
+@use "./variables.module.scss";
+@use "./mixins.module.scss";
+
+.sectionMain {
+  .backButton {
+    color: variables.$color__primary-light;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0;
+    font-size: 1.6rem;
+  }
+
+  .pageTitleAndActionButtonsContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 1.25rem;
+
+    .pageTitle {
+      grid-column: 1/-1;
+      font-size: 2.4rem;
+      font-weight: 500;
+      color: variables.$color__primary;
+    }
+
+    .userActions {
+      padding: 1.25rem 1.5rem;
+      font-size: 1.6rem;
+      border: 0.2rem solid;
+      border-radius: 0.8rem;
+      border-color: variables.$color__tag-red;
+      color: variables.$color__tag-red;
+
+      &:last-child {
+        border-color: variables.$color__secondary;
+        color: variables.$color__secondary;
+      }
+    }
+  }
+
+  .userAccountSummaryContainer {
+    margin: 4rem 0;
+    border-radius: 0.4rem;
+    padding: 1.6rem;
+    padding-bottom: 0;
+    background-color: #fff;
+    box-shadow: 3px 5px 20px 0px #0000000a;
+
+    .userAccountSummary {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+
+      .userAvatarContainer {
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
+        column-gap: 1.25rem;
+
+        .userAvatar {
+          width: 6.4rem;
+          height: 6.4rem;
+          grid-row: 1/-1;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+
+        .userName {
+          margin: 0.5rem 0;
+          align-self: end;
+          font-weight: 500;
+          font-size: 2.2rem;
+          color: variables.$color__primary;
+        }
+
+        .userAccountId {
+          margin: 0;
+          grid-column-start: 2;
+          grid-row-start: 2;
+          align-self: start;
+          color: variables.$color__primary-light;
+        }
+      }
+
+      .userAccountTierContainer,
+      .userBankDetailsContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+      }
+
+      .userAccountTierContainer {
+        color: variables.$color__primary-light;
+      }
+
+      .userBankDetailsContainer {
+        color: variables.$color__primary;
+
+        .userBankBalance {
+          font-weight: 500;
+          font-size: 2.2rem;
+          color: variables.$color__primary;
+        }
+
+        .userBankName {
+          color: variables.$color__primary-light;
+        }
+      }
+    }
+
+    .userTabsNav {
+      overflow-x: auto;
+
+      .userTabs {
+        padding: 0;
+        list-style-type: none;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 1rem;
+
+        .userTab {
+          min-width: max-content;
+          padding: 1rem 1.25rem 0.75rem;
+        }
+      }
+    }
+  }
+}

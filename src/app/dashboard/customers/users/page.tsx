@@ -21,7 +21,7 @@ function Dashboard() {
     },
   });
 
-  console.log(!isPending && !isFetching && !error && data);
+  // console.log(!isPending && !isFetching && !error && data);
 
   return (
     <DashboardLayout>
