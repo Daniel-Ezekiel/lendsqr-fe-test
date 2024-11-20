@@ -5,29 +5,36 @@
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  gap: 0.25rem;
-  padding: 1.5rem;
+  gap: 1rem;
+  padding: 2.5rem;
+  border-radius: 0.8rem;
   background-color: #fff;
   box-shadow: 3px 5px 20px 0px #0000000a;
 
+  .iconContainer {
+    height: 4.8rem;
+    width: 4.8rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+
   .bgUsers {
-    background-color: variables.$color__purple;
-    opacity: 0.1;
+    background-color: #df18ff10;
   }
 
   .bgActiveUsers {
-    background-color: variables.$color__blue;
-    opacity: 0.1;
+    background-color: #5718ff10;
   }
 
   .bgLoanUsers {
-    background-color: variables.$color__orange;
-    opacity: 0.1;
+    background-color: #f55f4410;
   }
 
   .bgSavingUsers {
-    background-color: variables.$color__red;
-    opacity: 0.1;
+    background-color: #ff336610;
   }
 
   .statsCardTitle {
@@ -37,6 +44,7 @@
 
   .statsCardCount {
     font-weight: 600;
+    font-size: 2rem;
     color: variables.$color__primary;
   }
 }

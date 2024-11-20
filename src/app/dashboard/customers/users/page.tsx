@@ -25,13 +25,21 @@ function Dashboard() {
   return (
     <DashboardLayout>
       <section className={styles.sectionMain}>
-        <h1>Users</h1>
+        <h1 className={styles.sectionMainTitle}>Users</h1>
 
-        <div>
+        <div className={styles.statsCardsContainer}>
           <StatsCard imgSrc={UsersIcon} title='Users' count={2453} />
-          <StatsCard imgSrc={ActiveUsersIcon} title='Users' count={2453} />
-          <StatsCard imgSrc={LoanUsersIcon} title='Users' count={2453} />
-          <StatsCard imgSrc={SavingUsersIcon} title='Users' count={2453} />
+          <StatsCard
+            imgSrc={ActiveUsersIcon}
+            title='Active Users'
+            count={2453}
+          />
+          <StatsCard imgSrc={LoanUsersIcon} title='Loan Users' count={2453} />
+          <StatsCard
+            imgSrc={SavingUsersIcon}
+            title='Savings Users'
+            count={2453}
+          />
         </div>
       </section>
     </DashboardLayout>

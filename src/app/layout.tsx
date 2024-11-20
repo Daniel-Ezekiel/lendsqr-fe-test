@@ -3,12 +3,15 @@ import localFont from "next/font/local";
 import "./global.css";
 import variables from "./sass/variables.module.scss";
 import ServiceProvider from "./_components/ServiceProvider";
+import { Work_Sans } from "next/font/google";
 
-const workSans = localFont({
-  src: "./fonts/work-sans/WorkSans-VariableFont_wght.woff",
+const workSans = Work_Sans({
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  subsets: ["latin"],
+  display: "swap",
   variable: "--font-work-sans",
-  weight: "100 900",
 });
+
 const avenirNextRegular = localFont({
   src: "./fonts/avenir-next/AvenirNextLTPro-Regular.woff",
   variable: "--font-avenir-next-regular",
@@ -34,7 +37,7 @@ export default function RootLayout({
     <html lang='en'>
       <ServiceProvider>
         <body
-          className={`${workSans.variable} ${avenirNextRegular.variable} ${avenirNextBold.variable} ${variables.body} `}
+          className={`${workSans.className} ${avenirNextRegular.variable} ${avenirNextBold.variable} ${variables.body} `}
         >
           {children}
         </body>

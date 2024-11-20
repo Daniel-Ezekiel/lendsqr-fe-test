@@ -3,4 +3,27 @@
 
 .sectionMain {
   padding: 2rem;
+
+  @include mixins.tablet() {
+    padding: 4rem 6rem;
+  }
+
+  .sectionMainTitle {
+    font-size: 2.4rem;
+    font-weight: 500;
+    color: variables.$color__primary;
+  }
+
+  .statsCardsContainer {
+    display: grid;
+    gap: 4rem;
+
+    @include mixins.mobileLandscape() {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include mixins.smallLaptop() {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
 }

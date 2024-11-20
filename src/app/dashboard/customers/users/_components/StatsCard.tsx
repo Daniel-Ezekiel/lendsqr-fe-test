@@ -9,26 +9,28 @@ type statsCardTypes = {
 
 type imgColorTypes = {
   users: string;
-  activeUsers: string;
-  loanUsers: string;
-  savingUsers: string;
+  "active users": string;
+  "loan users": string;
+  "savings users": string;
 };
 
 function StatsCard({ imgSrc, title, count }: statsCardTypes) {
   const imgColor = {
     users: styles.bgUsers,
-    activeUsers: styles.bgActiveUsers,
-    loanUsers: styles.bgLoanUsers,
-    savingUsers: styles.bgSavingUsers,
+    "active users": styles.bgActiveUsers,
+    "loan users": styles.bgLoanUsers,
+    "savings users": styles.bgSavingUsers,
   };
 
   return (
-    <div>
-      <Image
-        className={imgColor[title.toLowerCase() as keyof imgColorTypes]}
-        src={imgSrc}
-        alt='icon'
-      />
+    <div className={styles.statsCard}>
+      <div
+        className={`${styles.iconContainer} ${
+          imgColor[title.toLowerCase() as keyof imgColorTypes]
+        }`}
+      >
+        <Image src={imgSrc} alt='icon' />
+      </div>
       <span className={styles.statsCardTitle}>{title}</span>
       <span className={styles.statsCardCount}>{count}</span>
     </div>
