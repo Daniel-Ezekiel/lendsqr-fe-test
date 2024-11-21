@@ -9,6 +9,7 @@ import UserTypes from "@/app/_types/user.types";
 import { ArrowLeftIcon } from "lucide-react";
 import Image from "next/image";
 import Avatar from "@/assets/images/profile.png";
+import { IoStarOutline, IoStarSharp } from "react-icons/io5";
 
 const tabs: string[] = [
   "General Details",
@@ -72,12 +73,19 @@ function User() {
               <h2 className={styles.userName}>{`${
                 (user as UserTypes)?.profile?.firstName
               } ${(user as UserTypes)?.profile?.lastName}`}</h2>
-              <span className={styles.userAccountId}>LSQFf587g90</span>
+
+              <span className={styles.userAccountId}>
+                {(user as UserTypes)?.accountNumber}
+              </span>
             </div>
 
             <div className={styles.userAccountTierContainer}>
               <span>User's Tier</span>
-              <span>***</span>
+              <span>
+                <IoStarSharp className={styles.starIcon} size={18} />
+                <IoStarOutline className={styles.starIcon} size={18} />
+                <IoStarOutline className={styles.starIcon} size={18} />
+              </span>
             </div>
 
             <div className={styles.userBankDetailsContainer}>

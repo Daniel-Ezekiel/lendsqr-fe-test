@@ -16,11 +16,20 @@
     grid-template-columns: repeat(2, 1fr);
     column-gap: 1.25rem;
 
+    @include mixins.tablet() {
+      display: flex;
+      align-items: center;
+    }
+
     .pageTitle {
       grid-column: 1/-1;
       font-size: 2.4rem;
       font-weight: 500;
       color: variables.$color__primary;
+
+      @include mixins.tablet() {
+        margin-right: auto;
+      }
     }
 
     .userActions {
@@ -29,6 +38,11 @@
       border: 0.2rem solid;
       border-radius: 0.8rem;
       border-color: variables.$color__tag-red;
+      justify-self: end;
+      max-width: 17rem;
+
+      font-weight: 600;
+      text-transform: uppercase;
       color: variables.$color__tag-red;
 
       &:last-child {
@@ -50,6 +64,16 @@
       display: grid;
       gap: 1.25rem;
 
+      @include mixins.mobileLandscape() {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 2rem;
+      }
+
+      @include mixins.smallLaptop() {
+        display: flex;
+        align-items: center;
+      }
+
       .userAvatarContainer {
         width: 100%;
         display: grid;
@@ -57,9 +81,18 @@
         grid-template-rows: auto auto;
         column-gap: 1.25rem;
 
+        @include mixins.mobileLandscape() {
+          grid-column: 1/-1;
+        }
+
+        @include mixins.smallLaptop() {
+          width: max-content;
+          padding-right: 2.5rem;
+        }
+
         .userAvatar {
-          width: 6.4rem;
-          height: 6.4rem;
+          width: 10rem;
+          height: 10rem;
           grid-row: 1/-1;
           border-radius: 50%;
           object-fit: cover;
@@ -87,10 +120,18 @@
         display: flex;
         flex-direction: column;
         align-items: start;
+        gap: 0.25rem;
+
+        padding: 2rem 3rem;
+        border-left: 0.1rem solid variables.$color__primary-light;
       }
 
       .userAccountTierContainer {
         color: variables.$color__primary-light;
+
+        .starIcon {
+          color: #e9b200;
+        }
       }
 
       .userBankDetailsContainer {
