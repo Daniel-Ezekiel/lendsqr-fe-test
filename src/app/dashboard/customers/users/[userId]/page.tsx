@@ -193,7 +193,7 @@ function User() {
             </div>
 
             <div className={styles.userAccountTierContainer}>
-              <span>User's Tier</span>
+              <span>User&#39;s Tier</span>
               <span>
                 <IoStarSharp className={styles.starIcon} size={18} />
                 <IoStarOutline className={styles.starIcon} size={18} />
