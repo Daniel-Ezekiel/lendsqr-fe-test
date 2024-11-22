@@ -11,6 +11,7 @@ import Image from "next/image";
 import Avatar from "@/assets/images/profile.png";
 import { IoStarOutline, IoStarSharp } from "react-icons/io5";
 import UserInfoSection from "./_components/UserInfoSection";
+import { useState } from "react";
 
 const tabs: string[] = [
   "General Details",
@@ -24,6 +25,16 @@ const tabs: string[] = [
 function User() {
   const { userId } = useParams();
   const router = useRouter();
+
+  const tabs = [
+    "General Details",
+    "Documents",
+    "Bank Details",
+    "Loans",
+    "Savings",
+    "App and System",
+  ];
+  const [activeTab, setActiveTab] = useState<string>(tabs[0]);
 
   const { isPending, error, data, isFetching } = useQuery({
     queryKey: ["user", userId],
@@ -149,7 +160,7 @@ function User() {
     },
   ];
 
-  console.log(user);
+  // console.log(user);
 
   return (
     <DashboardLayout>
@@ -217,7 +228,13 @@ function User() {
           <div className={styles.userTabsNav}>
             <ul className={styles.userTabs}>
               {tabs.map((tab, i) => (
-                <li key={i} className={styles.userTab}>
+                <li
+                  key={i}
+                  className={`${tab === activeTab && styles.activeTab} ${
+                    styles.userTab
+                  }`}
+                  onClick={() => setActiveTab(tabs[i])}
+                >
                   {tab}
                 </li>
               ))}
@@ -227,23 +244,28 @@ function User() {
       </section>
 
       <section className={styles.sectionSubsections}>
-        <UserInfoSection
-          title='Personal Information'
-          sectionDetails={personalInfoSectionData}
-        />
+        {activeTab === "General Details" && (
+          <>
+            <UserInfoSection
+              title='Personal Information'
+              sectionDetails={personalInfoSectionData}
+            />
 
-        <UserInfoSection
-          title='Education and Employment'
-          sectionDetails={educationAndEmploymentSectionData}
-        />
+            <UserInfoSection
+              title='Education and Employment'
+              sectionDetails={educationAndEmploymentSectionData}
+            />
 
-        <UserInfoSection title='Socials' sectionDetails={socialsSectionData} />
+            <UserInfoSection
+              title='Socials'
+              sectionDetails={socialsSectionData}
+            />
 
-        <UserInfoSection
-          title='Guarantor'
-          sectionDetails={guarantorSectionData}
-        />
-        {/* <div className={styles.subsection}>
+            <UserInfoSection
+              title='Guarantor'
+              sectionDetails={guarantorSectionData}
+            />
+            {/* <div className={styles.subsection}>
           <h3 className={styles.subsectionTitle}>Personal Information</h3>
 
           <div className={styles.subsectionContent}>
@@ -321,6 +343,12 @@ function User() {
             </div>
           </div>
         </div> */}
+          </>
+        )}
+
+        {activeTab !== "General Details" && (
+          <p>Nothing to display at this moment.</p>
+        )}
       </section>
     </DashboardLayout>
   );

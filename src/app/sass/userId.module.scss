@@ -153,6 +153,7 @@
       overflow-x: auto;
 
       .userTabs {
+        margin-bottom: 0;
         padding: 0;
         list-style-type: none;
         display: flex;
@@ -162,7 +163,17 @@
 
         .userTab {
           min-width: max-content;
-          padding: 1rem 1.25rem 0.75rem;
+          padding: 1rem 1.25rem 1.75rem;
+          color: variables.$color__primary;
+          cursor: pointer;
+
+          transition: all ease-in-out 0.2s;
+        }
+
+        .activeTab {
+          border-bottom: 0.2rem solid variables.$color__secondary;
+          font-weight: 500;
+          color: variables.$color__secondary;
         }
       }
     }
@@ -174,35 +185,5 @@
   padding: 1.6rem;
   border-radius: 0.8rem;
   box-shadow: 3px 5px 20px 0px rgba(0, 0, 0, 0.0392156863);
-
-  // .subsection {
-  //   padding: 1.25rem;
-
-  //   .subsectionTitle {
-  //     font-weight: 500;
-  //     color: variables.$color__primary;
-  //   }
-
-  //   .subsectionContent {
-  //     display: grid;
-  //     gap: 1.5rem;
-  //     color: variables.$color__primary-light;
-
-  //     .subsectionContentItem {
-  //       display: flex;
-  //       flex-direction: column;
-  //       gap: 0.5rem;
-
-  //       .subsectionContentItemLabel {
-  //         text-transform: uppercase;
-  //         font-size: 1.4rem;
-  //       }
-
-  //       .subsectionContentItemValue {
-  //         font-size: 1.6rem;
-  //         font-weight: 500;
-  //       }
-  //     }
-  //   }
-  // }
+  color: variables.$color__primary;
 }
