@@ -38,6 +38,10 @@
     color: variables.$color__primary;
   }
 
+  .dashboardLink {
+    color: #7a8cb1;
+  }
+
   .sidebarLinksGroup {
     list-style-type: none;
     padding: 0;
@@ -59,7 +63,7 @@
       align-items: center;
       gap: 1.75rem;
       padding: 1.2rem 4rem;
-      color: #545f7d;
+      color: #7a8cb1;
       text-decoration: none;
     }
   }

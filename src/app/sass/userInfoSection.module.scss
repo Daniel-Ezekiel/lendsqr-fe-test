@@ -10,8 +10,10 @@
   }
 
   &:first-child {
-    .subsectionContent {
-      grid-template-columns: repeat(5, 1fr);
+    @include mixins.desktop() {
+      .subsectionContent {
+        grid-template-columns: repeat(5, 1fr);
+      }
     }
   }
 

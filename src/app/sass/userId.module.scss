@@ -14,7 +14,7 @@
   .pageTitleAndActionButtonsContainer {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    column-gap: 1.25rem;
+    column-gap: 1.75rem;
 
     @include mixins.tablet() {
       display: flex;
@@ -33,13 +33,12 @@
     }
 
     .userActions {
-      padding: 1.25rem 1.5rem;
+      padding: 1.25rem 1rem;
       font-size: 1.6rem;
       border: 0.2rem solid;
       border-radius: 0.8rem;
       border-color: variables.$color__tag-red;
-      justify-self: end;
-      max-width: 17rem;
+      justify-self: stretch;
 
       font-weight: 600;
       text-transform: uppercase;
@@ -48,6 +47,10 @@
       &:last-child {
         border-color: variables.$color__secondary;
         color: variables.$color__secondary;
+      }
+
+      @include mixins.mobileLandscape() {
+        padding: 1.25rem 1.5rem;
       }
     }
   }
@@ -151,19 +154,36 @@
 
     .userTabsNav {
       overflow-x: auto;
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      @include mixins.smallLaptop() {
+        padding: 0 2.5rem;
+      }
 
       .userTabs {
         margin-bottom: 0;
         padding: 0;
         list-style-type: none;
-        display: flex;
-        justify-content: start;
-        align-items: center;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
         gap: 1rem;
+
+        @include mixins.smallLaptop() {
+          gap: 3rem;
+          max-width: 105rem;
+        }
 
         .userTab {
           min-width: max-content;
           padding: 1rem 1.25rem 1.75rem;
+
+          text-align: center;
           color: variables.$color__primary;
           cursor: pointer;
 
