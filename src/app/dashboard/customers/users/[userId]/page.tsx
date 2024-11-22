@@ -10,6 +10,7 @@ import { ArrowLeftIcon } from "lucide-react";
 import Image from "next/image";
 import Avatar from "@/assets/images/profile.png";
 import { IoStarOutline, IoStarSharp } from "react-icons/io5";
+import UserInfoSection from "./_components/UserInfoSection";
 
 const tabs: string[] = [
   "General Details",
@@ -35,6 +36,118 @@ function User() {
   });
 
   const user = !isPending && !isFetching && !error && (data as UserTypes);
+
+  const personalInfoSectionData = [
+    {
+      name: "Full Name",
+      value: `${(user as UserTypes)?.profile?.firstName} ${
+        (user as UserTypes)?.profile?.lastName
+      }`,
+    },
+    {
+      name: "Phone No.",
+      value: (user as UserTypes)?.profile?.phoneNumber,
+    },
+    {
+      name: "Email Address",
+      value: (user as UserTypes)?.email,
+    },
+    {
+      name: "BVN",
+      value: (user as UserTypes)?.profile?.bvn,
+    },
+    {
+      name: "Gender",
+      value: (user as UserTypes)?.profile?.gender,
+    },
+    {
+      name: "Marital Status",
+      value: "Single",
+    },
+    {
+      name: "Children",
+      value: "None",
+    },
+    {
+      name: "Type of Residence",
+      value: "Parent Apartment",
+    },
+  ];
+
+  const educationAndEmploymentSectionData = [
+    {
+      name: "Level of Education",
+      value: (user as UserTypes)?.education?.level,
+    },
+    {
+      name: "Employment Status",
+      value: (user as UserTypes)?.education?.employmentStatus,
+    },
+    {
+      name: "Sector of Employment",
+      value: (user as UserTypes)?.education?.sector,
+    },
+    {
+      name: "Duration of Employment",
+      value: (user as UserTypes)?.education?.duration,
+    },
+    {
+      name: "Office Email",
+      value: (user as UserTypes)?.education?.officeEmail,
+    },
+    {
+      name: "Monthly Income",
+      value: (user as UserTypes)?.education?.monthlyIncome
+        .sort((a, z) => +a - +z)
+        .map((income) => "₦" + (+income * 1000).toLocaleString("en-GB"))
+        .join(" - "),
+    },
+    {
+      name: "Loan Repayment",
+      value:
+        "₦" +
+        (+(user as UserTypes)?.education?.loanRepayment * 1000).toLocaleString(
+          "en-GB"
+        ),
+    },
+  ];
+
+  const socialsSectionData = [
+    {
+      name: "Twitter",
+      value: (user as UserTypes)?.socials?.twitter,
+    },
+    {
+      name: "Facebook",
+      value: (user as UserTypes)?.socials?.facebook,
+    },
+    {
+      name: "Instagram",
+      value: (user as UserTypes)?.socials?.instagram,
+    },
+  ];
+
+  const guarantorSectionData = [
+    {
+      name: "Full Name",
+      value:
+        (user as UserTypes)?.guarantor?.firstName +
+        " " +
+        (user as UserTypes)?.guarantor?.lastName,
+    },
+    {
+      name: "Phone number",
+      value: (user as UserTypes)?.guarantor?.phoneNumber,
+    },
+    {
+      name: "Email Address",
+      value: (user as UserTypes)?.guarantor?.firstName + "@gmail.com",
+    },
+    {
+      name: "Relationship",
+      value: "Sister",
+    },
+  ];
 
   console.log(user);
 
@@ -111,6 +224,103 @@ function User() {
             </ul>
           </div>
         </div>
+      </section>
+
+      <section className={styles.sectionSubsections}>
+        <UserInfoSection
+          title='Personal Information'
+          sectionDetails={personalInfoSectionData}
+        />
+
+        <UserInfoSection
+          title='Education and Employment'
+          sectionDetails={educationAndEmploymentSectionData}
+        />
+
+        <UserInfoSection title='Socials' sectionDetails={socialsSectionData} />
+
+        <UserInfoSection
+          title='Guarantor'
+          sectionDetails={guarantorSectionData}
+        />
+        {/* <div className={styles.subsection}>
+          <h3 className={styles.subsectionTitle}>Personal Information</h3>
+
+          <div className={styles.subsectionContent}>
+            <div className={styles.subsectionContentItem}>
+              <span className={styles.subsectionContentItemLabel}>
+                Full Name
+              </span>
+              <span className={styles.subsectionContentItemValue}>
+                {(user as UserTypes)?.profile?.firstName}{" "}
+                {(user as UserTypes)?.profile?.lastName}
+              </span>
+            </div>
+
+            <div className={styles.subsectionContentItem}>
+              <span className={styles.subsectionContentItemLabel}>
+                Phone No.
+              </span>
+              <span className={styles.subsectionContentItemValue}>
+                {(user as UserTypes)?.profile?.phoneNumber}
+              </span>
+            </div>
+
+            <div className={styles.subsectionContentItem}>
+              <span className={styles.subsectionContentItemLabel}>
+                Email Address
+              </span>
+              <span className={styles.subsectionContentItemValue}>
+                {(user as UserTypes)?.email}
+              </span>
+            </div>
+
+            <div className={styles.subsectionContentItem}>
+              <span className={styles.subsectionContentItemLabel}>Bvn</span>
+              <span className={styles.subsectionContentItemValue}>
+                {(user as UserTypes)?.profile?.bvn}
+              </span>
+            </div>
+
+            <div className={styles.subsectionContentItem}>
+              <span className={styles.subsectionContentItemLabel}>Gender</span>
+              <span className={styles.subsectionContentItemValue}>
+                {(user as UserTypes)?.profile?.gender}
+              </span>
+            </div>
+
+            <div className={styles.subsectionContentItem}>
+              <span className={styles.subsectionContentItemLabel}>
+                Marital Status
+              </span>
+              <span className={styles.subsectionContentItemValue}>
+                {["single", "married"][Math.floor(Math.random() * 1.99)]}
+              </span>
+            </div>
+
+            <div className={styles.subsectionContentItem}>
+              <span className={styles.subsectionContentItemLabel}>
+                Children
+              </span>
+              <span className={styles.subsectionContentItemValue}>
+                {["none", "1", "2", "2+"][Math.floor(Math.random() * 3.99)]}
+              </span>
+            </div>
+
+            <div className={styles.subsectionContentItem}>
+              <span className={styles.subsectionContentItemLabel}>
+                Type of Residence
+              </span>
+              <span className={styles.subsectionContentItemValue}>
+                {
+                  ["Parent's Apartment", "Personal Apartment"][
+                    Math.floor(Math.random() * 1.99)
+                  ]
+                }
+              </span>
+            </div>
+          </div>
+        </div> */}
       </section>
     </DashboardLayout>
   );

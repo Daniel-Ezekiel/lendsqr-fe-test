@@ -1,0 +1,59 @@
+@use "./variables.module.scss";
+@use "./mixins.module.scss";
+
+.subsection {
+  padding: 2.5rem 1.25rem;
+  border-bottom: 0.2rem solid #e9ecf2;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:first-child {
+    .subsectionContent {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+
+  .subsectionTitle {
+    margin: 0.5rem 0 2.5rem;
+    font-weight: 500;
+    color: variables.$color__primary;
+  }
+
+  .subsectionContent {
+    display: grid;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    color: variables.$color__primary-light;
+
+    @include mixins.tablet() {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include mixins.smallLaptop() {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include mixins.desktop() {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .subsectionContentItem {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      .subsectionContentItemLabel {
+        text-transform: uppercase;
+        font-size: 1.4rem;
+      }
+
+      .subsectionContentItemValue {
+        font-size: 1.6rem;
+        font-weight: 500;
+      }
+    }
+  }
+}
