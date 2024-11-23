@@ -8,7 +8,6 @@ import ActiveUsersIcon from "@/assets/icons/active-users.svg";
 import LoanUsersIcon from "@/assets/icons/loan-users.svg";
 import SavingUsersIcon from "@/assets/icons/savings-users.svg";
 import UsersTable from "./_components/UsersTable";
-import { ClipLoader } from "react-spinners";
 import Skeleton from "./_components/Skeleton";
 
 function Dashboard() {
