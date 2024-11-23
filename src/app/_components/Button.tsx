@@ -4,15 +4,18 @@ import styles from "@/app/sass/button.module.scss";
 interface ButtonTypes {
   children: React.ReactNode | string;
   className?: string;
-  type?: string;
+  type?: "button" | "reset" | "submit";
+  disabled?: boolean;
   onClick?: () => void;
 }
 
-function Button({ children, className, onClick }: ButtonTypes) {
+function Button({ children, className, onClick, type, disabled }: ButtonTypes) {
   return (
     <button
       className={`${className} ${styles.buttonDefault}`}
       onClick={onClick}
+      type={type}
+      disabled={disabled}
     >
       {children}
     </button>

@@ -149,8 +149,6 @@ function User() {
     },
   ];
 
-  // console.log(user);
-
   return (
     <DashboardLayout>
       <section className={styles.sectionMain}>

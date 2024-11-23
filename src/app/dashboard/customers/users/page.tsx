@@ -22,8 +22,6 @@ function Dashboard() {
     },
   });
 
-  // console.log(!isPending && !isFetching && !error && data);
-
   return (
     <DashboardLayout>
       <section className={styles.sectionMain}>

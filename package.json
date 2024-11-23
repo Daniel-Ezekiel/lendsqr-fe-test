@@ -11,6 +11,8 @@
   "dependencies": {
     "@tanstack/react-query": "^5.60.6",
     "@tanstack/react-table": "^8.20.5",
+    "dotenv": "^16.4.5",
+    "firebase": "^11.0.2",
     "lucide-react": "^0.460.0",
     "next": "15.0.3",
     "react": "19.0.0-rc-66855b96-20241106",

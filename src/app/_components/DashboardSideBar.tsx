@@ -7,12 +7,42 @@ import Dashboard from "@/assets/icons/dashboard.svg";
 import Logout from "@/assets/icons/logout.svg";
 import { sideBarLinks } from "../utils/dashboardSidebarLinks";
 import Button from "./Button";
+import { useState } from "react";
+import { signOut } from "firebase/auth";
+import { auth } from "../services/firebase";
+import { useRouter } from "next/navigation";
 
 function DashboardSideBar({
   sidebarOpenStatus,
 }: {
   sidebarOpenStatus: boolean;
 }) {
+  const router = useRouter();
+  const [isLoggingOut, setIsLoggingOut] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
+  // const [isAuthorising, setIsAuthorising] = useState<boolean>(false);
+
+  const handleLogout = async () => {
+    setIsLoggingOut(true);
+
+    try {
+      await signOut(auth);
+
+      setIsError(false);
+      setError("");
+
+      router.push("/");
+      return { isLoggingOut, isError, error };
+    } catch (error) {
+      setIsError(true);
+      setError("There was an issue logging out...");
+      return error;
+    }
+
+    setIsLoggingOut(false);
+  };
+
   return (
     <aside
       className={`${styles.sidebar} ${sidebarOpenStatus && styles.openSidebar}`}
@@ -45,7 +75,11 @@ function DashboardSideBar({
       ))}
 
       <div className={styles.logoutContainer}>
-        <Button className={styles.logoutButton}>
+        <Button
+          className={styles.logoutButton}
+          onClick={handleLogout}
+          type='button'
+        >
           <Image src={Logout} alt='icon' /> Logout
         </Button>
         <span>v1.2.0</span>

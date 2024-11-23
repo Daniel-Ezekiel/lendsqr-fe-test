@@ -130,6 +130,10 @@
               color: variables.$color__primary-light;
             }
           }
+
+          .inputError {
+            border: 0.2rem solid variables.$color__red;
+          }
         }
 
         .passwordResetLink {
@@ -154,6 +158,14 @@
           font-family: var(--font-avenir-next-regular);
           font-size: 1.6rem;
           color: #fff;
+        }
+
+        .disabled {
+          background-color: #39cdccaa;
+        }
+
+        .error {
+          color: variables.$color__red;
         }
       }
     }
