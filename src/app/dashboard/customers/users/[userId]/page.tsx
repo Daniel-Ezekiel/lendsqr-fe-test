@@ -13,15 +13,6 @@ import { IoStarOutline, IoStarSharp } from "react-icons/io5";
 import UserInfoSection from "./_components/UserInfoSection";
 import { useState } from "react";
 
-const tabs: string[] = [
-  "General Details",
-  "Documents",
-  "Bank Details",
-  "Loans",
-  "Savings",
-  "App and System",
-];
-
 function User() {
   const { userId } = useParams();
   const router = useRouter();
