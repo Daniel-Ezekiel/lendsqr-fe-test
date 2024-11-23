@@ -23,9 +23,14 @@
 }
 
 .sectionTable {
-  padding: 2rem 0;
+  margin-top: 4rem;
+  display: grid;
+  justify-items: center;
+  border-radius: 0.8rem;
+  background-color: #fff;
+  box-shadow: 3px 5px 20px 0px #0000000a;
 
-  @include mixins.tablet() {
-    padding: 6rem 0;
+  .loaderContainer {
+    padding: 3rem;
   }
 }

@@ -6,12 +6,13 @@ import { useQuery } from "@tanstack/react-query";
 // import { useRouter } from "next/router";
 import { useParams, useRouter } from "next/navigation";
 import UserTypes from "@/app/_types/user.types";
-import { ArrowLeftIcon } from "lucide-react";
+import { ArrowLeftIcon, UserRoundIcon } from "lucide-react";
 import Image from "next/image";
 import Avatar from "@/assets/images/profile.png";
 import { IoStarOutline, IoStarSharp } from "react-icons/io5";
 import UserInfoSection from "./_components/UserInfoSection";
 import { useState } from "react";
+import Skeleton from "../_components/Skeleton";
 
 function User() {
   const { userId } = useParams();
@@ -27,7 +28,7 @@ function User() {
   ];
   const [activeTab, setActiveTab] = useState<string>(tabs[0]);
 
-  const { isPending, error, data, isFetching } = useQuery({
+  const { isPending, isLoading, error, data, isFetching } = useQuery({
     queryKey: ["user", userId],
     queryFn: async () => {
       const res = await fetch(
@@ -178,16 +179,22 @@ function User() {
         <div className={styles.userAccountSummaryContainer}>
           <div className={styles.userAccountSummary}>
             <div className={styles.userAvatarContainer}>
-              <Image
-                className={styles.userAvatar}
-                src={Avatar}
-                alt='user avatar'
-                width={64}
-                height={64}
-              />
-              <h2 className={styles.userName}>{`${
-                (user as UserTypes)?.profile?.firstName
-              } ${(user as UserTypes)?.profile?.lastName}`}</h2>
+              <div className={styles.userAvatar}>
+                <UserRoundIcon size={48} />
+              </div>
+
+              <h2 className={styles.userName}>
+                {(isPending || isLoading) && !error && (
+                  <Skeleton heightClass='2.5rem' />
+                )}
+                {!isPending && !isLoading && !error && (
+                  <>
+                    {`${(user as UserTypes)?.profile?.firstName} ${
+                      (user as UserTypes)?.profile?.lastName
+                    }`}
+                  </>
+                )}
+              </h2>
 
               <span className={styles.userAccountId}>
                 {(user as UserTypes)?.accountNumber}
@@ -195,24 +202,38 @@ function User() {
             </div>
 
             <div className={styles.userAccountTierContainer}>
-              <span>User&#39;s Tier</span>
-              <span>
-                <IoStarSharp className={styles.starIcon} size={18} />
-                <IoStarOutline className={styles.starIcon} size={18} />
-                <IoStarOutline className={styles.starIcon} size={18} />
-              </span>
+              {(isPending || isLoading) && !error && (
+                <Skeleton heightClass='2.5rem' />
+              )}
+              {!isPending && !isLoading && !error && (
+                <>
+                  <span>User&#39;s Tier</span>
+                  <span>
+                    <IoStarSharp className={styles.starIcon} size={18} />
+                    <IoStarOutline className={styles.starIcon} size={18} />
+                    <IoStarOutline className={styles.starIcon} size={18} />
+                  </span>
+                </>
+              )}
             </div>
 
             <div className={styles.userBankDetailsContainer}>
-              <span className={styles.userBankBalance}>
-                ₦
-                {(+(user as UserTypes)?.accountBalance * 1000).toLocaleString(
-                  "en-GB"
-                )}
-              </span>
-              <span className={styles.userBankName}>
-                {(user as UserTypes)?.accountNumber}/Providus Bank
-              </span>
+              {(isPending || isLoading) && !error && (
+                <Skeleton heightClass='2.5rem' />
+              )}
+              {!isPending && !isLoading && !error && (
+                <>
+                  <span className={styles.userBankBalance}>
+                    ₦
+                    {(
+                      +(user as UserTypes)?.accountBalance * 1000
+                    ).toLocaleString("en-GB")}
+                  </span>
+                  <span className={styles.userBankName}>
+                    {(user as UserTypes)?.accountNumber}/Providus Bank
+                  </span>
+                </>
+              )}
             </div>
           </div>
 
@@ -237,25 +258,32 @@ function User() {
       <section className={styles.sectionSubsections}>
         {activeTab === "General Details" && (
           <>
-            <UserInfoSection
-              title='Personal Information'
-              sectionDetails={personalInfoSectionData}
-            />
+            {(isPending || isLoading) && !error && (
+              <Skeleton heightClass='50rem' />
+            )}
+            {!isPending && !isLoading && !error && (
+              <>
+                <UserInfoSection
+                  title='Personal Information'
+                  sectionDetails={personalInfoSectionData}
+                />
 
-            <UserInfoSection
-              title='Education and Employment'
-              sectionDetails={educationAndEmploymentSectionData}
-            />
+                <UserInfoSection
+                  title='Education and Employment'
+                  sectionDetails={educationAndEmploymentSectionData}
+                />
 
-            <UserInfoSection
-              title='Socials'
-              sectionDetails={socialsSectionData}
-            />
+                <UserInfoSection
+                  title='Socials'
+                  sectionDetails={socialsSectionData}
+                />
 
-            <UserInfoSection
-              title='Guarantor'
-              sectionDetails={guarantorSectionData}
-            />
+                <UserInfoSection
+                  title='Guarantor'
+                  sectionDetails={guarantorSectionData}
+                />
+              </>
+            )}
             {/* <div className={styles.subsection}>
           <h3 className={styles.subsectionTitle}>Personal Information</h3>
 

@@ -8,9 +8,11 @@ import ActiveUsersIcon from "@/assets/icons/active-users.svg";
 import LoanUsersIcon from "@/assets/icons/loan-users.svg";
 import SavingUsersIcon from "@/assets/icons/savings-users.svg";
 import UsersTable from "./_components/UsersTable";
+import { ClipLoader } from "react-spinners";
+import Skeleton from "./_components/Skeleton";
 
 function Dashboard() {
-  const { isPending, error, data, isFetching } = useQuery({
+  const { isPending, isLoading, error, data, isFetching } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await fetch(
@@ -29,29 +31,48 @@ function Dashboard() {
         <h1 className={styles.sectionMainTitle}>Users</h1>
 
         <div className={styles.statsCardsContainer}>
-          <StatsCard imgSrc={UsersIcon} title='Users' count={2453} />
-          <StatsCard
-            imgSrc={ActiveUsersIcon}
-            title='Active Users'
-            count={2453}
-          />
-          <StatsCard
-            imgSrc={LoanUsersIcon}
-            title='Users with Loans'
-            count={12453}
-          />
-          <StatsCard
-            imgSrc={SavingUsersIcon}
-            title='Users with Savings'
-            count={102453}
-          />
+          {(isPending || isLoading) && !error && <Skeleton />}
+          {!isPending && !isLoading && !error && (
+            <StatsCard imgSrc={UsersIcon} title='Users' count={2453} />
+          )}
+
+          {(isPending || isLoading) && !error && <Skeleton />}
+          {!isPending && !isLoading && !error && (
+            <StatsCard
+              imgSrc={ActiveUsersIcon}
+              title='Active Users'
+              count={2453}
+            />
+          )}
+
+          {(isPending || isLoading) && !error && <Skeleton />}
+          {!isPending && !isLoading && !error && (
+            <StatsCard
+              imgSrc={LoanUsersIcon}
+              title='Users with Loans'
+              count={12453}
+            />
+          )}
+
+          {(isPending || isLoading) && !error && <Skeleton />}
+          {!isPending && !isLoading && !error && (
+            <StatsCard
+              imgSrc={SavingUsersIcon}
+              title='Users with Savings'
+              count={102453}
+            />
+          )}
         </div>
       </section>
 
       <section className={styles.sectionTable}>
-        <UsersTable
-          data={(!isPending && !isFetching && !error && data) || []}
-        />
+        {(isPending || isLoading) && !error && <Skeleton heightClass='60rem' />}
+
+        {!isPending && !isLoading && !error && (
+          <UsersTable
+            data={(!isPending && !isFetching && !error && data) || []}
+          />
+        )}
       </section>
     </DashboardLayout>
   );
