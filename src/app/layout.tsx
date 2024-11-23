@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./global.css";
-import variables from "./sass/variables.module.scss";
+import variables from "./_sass/variables.module.scss";
 import ServiceProvider from "./_components/ServiceProvider";
 import { Work_Sans } from "next/font/google";
 import AuthProvider from "./_components/AuthProvider";
@@ -15,12 +15,12 @@ const workSans = Work_Sans({
 });
 
 const avenirNextRegular = localFont({
-  src: "./fonts/avenir-next/AvenirNextLTPro-Regular.woff",
+  src: "./_fonts/avenir-next/AvenirNextLTPro-Regular.woff",
   variable: "--font-avenir-next-regular",
   weight: "400",
 });
 const avenirNextBold = localFont({
-  src: "./fonts/avenir-next/AvenirNextLTPro-Bold.woff",
+  src: "./_fonts/avenir-next/AvenirNextLTPro-Bold.woff",
   variable: "--font-avenir-next-bold",
   weight: "900",
 });

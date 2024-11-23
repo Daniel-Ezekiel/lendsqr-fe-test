@@ -1,7 +1,7 @@
 "use client";
 import Button from "@/app/_components/Button";
 import DashboardLayout from "@/app/_layouts/DashboardLayout";
-import styles from "@/app/sass/userId.module.scss";
+import styles from "@/app/_sass/userId.module.scss";
 import { useQuery } from "@tanstack/react-query";
 import { useParams, useRouter } from "next/navigation";
 import UserTypes from "@/app/_types/user.types";

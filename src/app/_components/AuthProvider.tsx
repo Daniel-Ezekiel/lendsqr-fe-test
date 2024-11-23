@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import { AuthContext } from "../contexts/AuthUserContext";
-import { auth } from "../services/firebase";
+import { AuthContext } from "../_contexts/AuthUserContext";
+import { auth } from "../_services/firebase";
 import { onAuthStateChanged, User } from "firebase/auth";
 
 function AuthProvider({ children }: { children: React.ReactNode }) {

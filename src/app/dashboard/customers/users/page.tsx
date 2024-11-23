@@ -1,6 +1,6 @@
 "use client";
 import DashboardLayout from "@/app/_layouts/DashboardLayout";
-import styles from "@/app/sass/dashboard.module.scss";
+import styles from "@/app/_sass/dashboard.module.scss";
 import { useQuery } from "@tanstack/react-query";
 import StatsCard from "./_components/StatsCard";
 import UsersIcon from "@/assets/icons/users.svg";
@@ -38,7 +38,7 @@ function Dashboard() {
             <StatsCard
               imgSrc={ActiveUsersIcon}
               title='Active Users'
-              count={2453}
+              count={2053}
             />
           )}
 
@@ -47,7 +47,7 @@ function Dashboard() {
             <StatsCard
               imgSrc={LoanUsersIcon}
               title='Users with Loans'
-              count={12453}
+              count={1453}
             />
           )}
 
@@ -56,7 +56,7 @@ function Dashboard() {
             <StatsCard
               imgSrc={SavingUsersIcon}
               title='Users with Savings'
-              count={102453}
+              count={453}
             />
           )}
         </div>

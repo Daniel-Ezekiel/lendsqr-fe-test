@@ -1,4 +1,4 @@
-import styles from "@/app/sass/skeletonCard.module.scss";
+import styles from "@/app/_sass/skeletonCard.module.scss";
 
 function Skeleton({ heightClass }: { heightClass?: string }) {
   return (

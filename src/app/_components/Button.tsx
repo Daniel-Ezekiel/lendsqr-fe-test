@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "@/app/sass/button.module.scss";
+import styles from "@/app/_sass/button.module.scss";
 
 interface ButtonTypes {
   children: React.ReactNode | string;

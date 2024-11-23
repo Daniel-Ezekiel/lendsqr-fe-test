@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "@/app/sass/statsCard.module.scss";
+import styles from "@/app/_sass/statsCard.module.scss";
 
 type statsCardTypes = {
   imgSrc: string;

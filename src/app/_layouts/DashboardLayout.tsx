@@ -1,5 +1,5 @@
 "use client";
-import styles from "@/app/sass/dashboardLayout.module.scss";
+import styles from "@/app/_sass/dashboardLayout.module.scss";
 import DashboardHeader from "../_components/DashboardHeader";
 import DashboardSideBar from "../_components/DashboardSideBar";
 import { useState } from "react";

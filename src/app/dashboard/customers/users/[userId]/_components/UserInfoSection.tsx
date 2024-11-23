@@ -1,4 +1,4 @@
-import styles from "@/app/sass/userInfoSection.module.scss";
+import styles from "@/app/_sass/userInfoSection.module.scss";
 
 function UserInfoSection({
   title,

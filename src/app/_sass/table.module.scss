@@ -9,6 +9,7 @@
 
   .table {
     width: 100%;
+    font-size: 1.4rem;
   }
 
   .tr {
@@ -23,6 +24,7 @@
     text-align: left;
     width: max-content;
     padding: 1.25rem 1.5rem;
+    font-size: 1.6rem;
     font-weight: 600;
     text-transform: uppercase;
     color: variables.$color__primary;

@@ -1,15 +1,15 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import styles from "@/app/sass/dashboardSidebar.module.scss";
+import styles from "@/app/_sass/dashboardSidebar.module.scss";
 import Organization from "@/assets/icons/organization.svg";
 import Dashboard from "@/assets/icons/dashboard.svg";
 import Logout from "@/assets/icons/logout.svg";
-import { sideBarLinks } from "../utils/dashboardSidebarLinks";
+import { sideBarLinks } from "../_utils/dashboardSidebarLinks";
 import Button from "./Button";
 import { useState } from "react";
 import { signOut } from "firebase/auth";
-import { auth } from "../services/firebase";
+import { auth } from "../_services/firebase";
 import { useRouter } from "next/navigation";
 
 function DashboardSideBar({

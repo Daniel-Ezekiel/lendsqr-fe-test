@@ -2,9 +2,10 @@ import {
   createColumnHelper,
   flexRender,
   getCoreRowModel,
+  getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import styles from "@/app/sass/table.module.scss";
+import styles from "@/app/_sass/table.module.scss";
 import Link from "next/link";
 import User from "@/app/_types/user.types";
 
@@ -60,6 +61,7 @@ function UsersTable({ data }: { data: User[] }) {
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
   });
 
   return (

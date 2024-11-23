@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import styles from "@/app/sass/dashboardHeader.module.scss";
+import styles from "@/app/_sass/dashboardHeader.module.scss";
 import Logo from "@/assets/images/logo.svg";
 // import Search from "@/assets/icons/search.svg";
 // import Docs from "@/assets/icons/docs.svg";
