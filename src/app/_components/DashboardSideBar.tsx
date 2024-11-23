@@ -4,7 +4,9 @@ import Image from "next/image";
 import styles from "@/app/sass/dashboardSidebar.module.scss";
 import Organization from "@/assets/icons/organization.svg";
 import Dashboard from "@/assets/icons/dashboard.svg";
+import Logout from "@/assets/icons/logout.svg";
 import { sideBarLinks } from "../utils/dashboardSidebarLinks";
+import Button from "./Button";
 
 function DashboardSideBar({
   sidebarOpenStatus,
@@ -41,6 +43,13 @@ function DashboardSideBar({
           ))}
         </ul>
       ))}
+
+      <div className={styles.logoutContainer}>
+        <Button className={styles.logoutButton}>
+          <Image src={Logout} alt='icon' /> Logout
+        </Button>
+        <span>v1.2.0</span>
+      </div>
     </aside>
   );
 }
