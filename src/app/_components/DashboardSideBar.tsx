@@ -10,7 +10,7 @@ import Button from "./Button";
 import { useState } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "../_services/firebase";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 function DashboardSideBar({
   sidebarOpenStatus,
@@ -18,6 +18,9 @@ function DashboardSideBar({
   sidebarOpenStatus: boolean;
 }) {
   const router = useRouter();
+  const pathName = usePathname();
+  const currentPath = pathName.slice(1).split("/");
+  console.log(currentPath);
   const [isLoggingOut, setIsLoggingOut] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
@@ -63,7 +66,9 @@ function DashboardSideBar({
           {sidebarLink.links.map((link) => (
             <li key={link.id}>
               <Link
-                className={styles.sidebarLink}
+                className={`${styles.sidebarLink} ${
+                  pathName.includes(link.href) && styles.activeLink
+                }`}
                 href={`/dashboard/${link.href}`}
               >
                 <Image src={link.icon} alt='icon' />
