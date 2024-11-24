@@ -1,44 +1,58 @@
 type User = {
-  createdAt: string;
-  orgName: string;
-  userName: string;
-  email: string;
-  phoneNumber: string;
-  lastActiveDate: string;
-  profile: {
-    firstName: string;
-    lastName: string;
-    phoneNumber: string;
-    avatar: string;
-    gender: string;
-    bvn: string;
-    address: string;
-    currency: string;
-  };
-  guarantor: {
-    firstName: string;
-    lastName: string;
-    phoneNumber: string;
-    gender: string;
-    address: string;
-  };
-  accountBalance: string;
-  accountNumber: string;
+  id: number;
+  status: string;
   socials: {
+    twitter: string;
     facebook: string;
     instagram: string;
-    twitter: string;
   };
-  education: {
-    level: string;
-    employmentStatus: string;
-    sector: string;
-    duration: string;
-    officeEmail: string;
-    monthlyIncome: string[];
-    loanRepayment: string;
+  customerId: string;
+  guarantors: [
+    {
+      full_name: string;
+      phone_number: string;
+      relationship: string;
+      email_address: string;
+    },
+    {
+      full_name: string;
+      phone_number: string;
+      relationship: string;
+      email_address: string;
+    }
+  ];
+  account_details: {
+    tier: string;
+    avatar: string;
+    bank_name: string;
+    account_number: number;
+    account_balance: number;
   };
-  id: string;
+  personal_information: {
+    bvn: number;
+    gender: string;
+    children: string;
+    full_name: string;
+    organization: string;
+    phone_number: string;
+    email_address: string;
+    marital_status: string;
+    type_of_residence: string;
+    dateJoined: string;
+    username: string;
+  };
+  education_and_employment: {
+    loan_repayment: number;
+    monthly_income: {
+      max: number;
+      min: number;
+    };
+    employment_status: string;
+    level_of_education: string;
+    sector_of_employment: string;
+    duration_of_employment: string;
+    office_email: string;
+  };
 };
 
 export default User;

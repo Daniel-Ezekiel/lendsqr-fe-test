@@ -25,7 +25,6 @@
 
   .subsectionContent {
     display: grid;
-    flex-wrap: wrap;
     gap: 1.5rem;
     color: variables.$color__primary-light;
 
@@ -55,6 +54,46 @@
       .subsectionContentItemValue {
         font-size: 1.6rem;
         font-weight: 500;
+      }
+    }
+  }
+
+  .guarantorSubsectionContent {
+    display: grid;
+
+    .guarantorDetailsContainer {
+      display: grid;
+
+      @include mixins.tablet() {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @include mixins.smallLaptop() {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      @include mixins.desktop() {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      &:last-child {
+        margin-top: 6rem;
+      }
+
+      .subsectionContentItem {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        .subsectionContentItemLabel {
+          text-transform: uppercase;
+          font-size: 1.4rem;
+        }
+
+        .subsectionContentItemValue {
+          font-size: 1.6rem;
+          font-weight: 500;
+        }
       }
     }
   }

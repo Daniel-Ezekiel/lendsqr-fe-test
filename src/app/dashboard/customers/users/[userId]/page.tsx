@@ -10,6 +10,7 @@ import { IoStarOutline, IoStarSharp } from "react-icons/io5";
 import UserInfoSection from "./_components/UserInfoSection";
 import { useState } from "react";
 import Skeleton from "../_components/Skeleton";
+import { GuarantorDetailsArr } from "@/app/_types/guarantorDetailsArr.types";
 
 function User() {
   const { userId } = useParams();
@@ -29,7 +30,7 @@ function User() {
     queryKey: ["user", userId],
     queryFn: async () => {
       const res = await fetch(
-        `https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users/${userId}`
+        `https://api.npoint.io/f665a31c4b7bcf6c36cf/users/${userId}`
       );
       return await res.json();
     },
@@ -40,75 +41,76 @@ function User() {
   const personalInfoSectionData = [
     {
       name: "Full Name",
-      value: `${(user as UserTypes)?.profile?.firstName} ${
-        (user as UserTypes)?.profile?.lastName
-      }`,
+      value: `${(user as UserTypes)?.personal_information?.full_name}`,
     },
     {
       name: "Phone No.",
-      value: (user as UserTypes)?.profile?.phoneNumber,
+      value: (user as UserTypes)?.personal_information?.phone_number,
     },
     {
       name: "Email Address",
-      value: (user as UserTypes)?.email,
+      value: (user as UserTypes)?.personal_information?.email_address,
     },
     {
       name: "BVN",
-      value: (user as UserTypes)?.profile?.bvn,
+      value: (user as UserTypes)?.personal_information?.bvn,
     },
     {
       name: "Gender",
-      value: (user as UserTypes)?.profile?.gender,
+      value: (user as UserTypes)?.personal_information?.gender,
     },
     {
       name: "Marital Status",
-      value: "Single",
+      value: (user as UserTypes)?.personal_information?.marital_status,
     },
     {
       name: "Children",
-      value: "None",
+      value: (user as UserTypes)?.personal_information?.children,
     },
     {
       name: "Type of Residence",
-      value: "Parent Apartment",
+      value: (user as UserTypes)?.personal_information?.type_of_residence,
     },
   ];
 
   const educationAndEmploymentSectionData = [
     {
       name: "Level of Education",
-      value: (user as UserTypes)?.education?.level,
+      value: (user as UserTypes)?.education_and_employment?.level_of_education,
     },
     {
       name: "Employment Status",
-      value: (user as UserTypes)?.education?.employmentStatus,
+      value: (user as UserTypes)?.education_and_employment?.employment_status,
     },
     {
       name: "Sector of Employment",
-      value: (user as UserTypes)?.education?.sector,
+      value: (user as UserTypes)?.education_and_employment
+        ?.sector_of_employment,
     },
     {
       name: "Duration of Employment",
-      value: (user as UserTypes)?.education?.duration,
+      value: (user as UserTypes)?.education_and_employment
+        ?.duration_of_employment,
     },
     {
       name: "Office Email",
-      value: (user as UserTypes)?.education?.officeEmail,
+      value: (user as UserTypes)?.education_and_employment?.office_email,
     },
     {
       name: "Monthly Income",
-      value: (user as UserTypes)?.education?.monthlyIncome
-        .sort((a, z) => +a - +z)
-        .map((income) => "₦" + (+income * 1000).toLocaleString("en-GB"))
-        .join(" - "),
+      value: `₦${(
+        user as UserTypes
+      )?.education_and_employment?.monthly_income.min.toLocaleString(
+        "en-GB"
+      )} - ₦${(
+        user as UserTypes
+      )?.education_and_employment?.monthly_income.max.toLocaleString("en-GB")}`,
     },
     {
       name: "Loan Repayment",
-      value:
-        "₦" +
-        (+(user as UserTypes)?.education?.loanRepayment * 1000).toLocaleString(
-          "en-GB"
-        ),
+      value: `₦${(
+        user as UserTypes
+      )?.education_and_employment?.loan_repayment.toLocaleString("en-GB")}`,
     },
   ];
 
@@ -127,27 +129,47 @@ function User() {
     },
   ];
 
-  const guarantorSectionData = [
-    {
-      name: "Full Name",
-      value:
-        (user as UserTypes)?.guarantor?.firstName +
-        " " +
-        (user as UserTypes)?.guarantor?.lastName,
-    },
-    {
-      name: "Phone number",
-      value: (user as UserTypes)?.guarantor?.phoneNumber,
-    },
-    {
-      name: "Email Address",
-      value: (user as UserTypes)?.guarantor?.firstName + "@gmail.com",
-    },
-    {
-      name: "Relationship",
-      value: "Sister",
-    },
-  ];
+  const guarantorSectionData = !isPending &&
+    !isFetching &&
+    !error && [
+      [
+        {
+          name: "Full Name",
+          value: (user as UserTypes)?.guarantors[0]?.full_name,
+        },
+        {
+          name: "Phone number",
+          value: (user as UserTypes)?.guarantors[0]?.phone_number,
+        },
+        {
+          name: "Email Address",
+          value: (user as UserTypes)?.guarantors[0]?.email_address,
+        },
+        {
+          name: "Relationship",
+          value: (user as UserTypes)?.guarantors[0]?.relationship,
+        },
+      ],
+
+      [
+        {
+          name: "Full Name",
+          value: (user as UserTypes)?.guarantors[1]?.full_name,
+        },
+        {
+          name: "Phone number",
+          value: (user as UserTypes)?.guarantors[1]?.phone_number,
+        },
+        {
+          name: "Email Address",
+          value: (user as UserTypes)?.guarantors[1]?.email_address,
+        },
+        {
+          name: "Relationship",
+          value: (user as UserTypes)?.guarantors[1]?.relationship,
+        },
+      ],
+    ];
 
   return (
     <DashboardLayout>
@@ -183,16 +205,14 @@ function User() {
                   <Skeleton heightClass='2.5rem' />
                 )}
                 {!isPending && !isLoading && !error && (
-                  <>
-                    {`${(user as UserTypes)?.profile?.firstName} ${
-                      (user as UserTypes)?.profile?.lastName
-                    }`}
-                  </>
+                  <>{`${
+                    (user as UserTypes).personal_information?.full_name
+                  }`}</>
                 )}
               </h2>
 
               <span className={styles.userAccountId}>
-                {(user as UserTypes)?.accountNumber}
+                {(user as UserTypes)?.customerId}
               </span>
             </div>
 
@@ -220,12 +240,12 @@ function User() {
                 <>
                   <span className={styles.userBankBalance}>
                     ₦
-                    {(
-                      +(user as UserTypes)?.accountBalance * 1000
-                    ).toLocaleString("en-GB")}
+                    {(+(user as UserTypes)?.account_details
+                      ?.account_balance).toLocaleString("en-GB")}
                   </span>
                   <span className={styles.userBankName}>
-                    {(user as UserTypes)?.accountNumber}/Providus Bank
+                    {(user as UserTypes)?.account_details?.account_number}/
+                    {(user as UserTypes)?.account_details?.bank_name}
                   </span>
                 </>
               )}
@@ -283,88 +303,12 @@ function User() {
 
                 <UserInfoSection
                   title='Guarantor'
-                  sectionDetails={guarantorSectionData}
+                  guarantorDetailsArr={
+                    guarantorSectionData as GuarantorDetailsArr
+                  }
                 />
               </>
             )}
-            {/* <div className={styles.subsection}>
-          <h3 className={styles.subsectionTitle}>Personal Information</h3>
-
-          <div className={styles.subsectionContent}>
-            <div className={styles.subsectionContentItem}>
-              <span className={styles.subsectionContentItemLabel}>
-                Full Name
-              </span>
-              <span className={styles.subsectionContentItemValue}>
-                {(user as UserTypes)?.profile?.firstName}{" "}
-                {(user as UserTypes)?.profile?.lastName}
-              </span>
-            </div>
-
-            <div className={styles.subsectionContentItem}>
-              <span className={styles.subsectionContentItemLabel}>
-                Phone No.
-              </span>
-              <span className={styles.subsectionContentItemValue}>
-                {(user as UserTypes)?.profile?.phoneNumber}
-              </span>
-            </div>
-
-            <div className={styles.subsectionContentItem}>
-              <span className={styles.subsectionContentItemLabel}>
-                Email Address
-              </span>
-              <span className={styles.subsectionContentItemValue}>
-                {(user as UserTypes)?.email}
-              </span>
-            </div>
-
-            <div className={styles.subsectionContentItem}>
-              <span className={styles.subsectionContentItemLabel}>Bvn</span>
-              <span className={styles.subsectionContentItemValue}>
-                {(user as UserTypes)?.profile?.bvn}
-              </span>
-            </div>
-
-            <div className={styles.subsectionContentItem}>
-              <span className={styles.subsectionContentItemLabel}>Gender</span>
-              <span className={styles.subsectionContentItemValue}>
-                {(user as UserTypes)?.profile?.gender}
-              </span>
-            </div>
-
-            <div className={styles.subsectionContentItem}>
-              <span className={styles.subsectionContentItemLabel}>
-                Marital Status
-              </span>
-              <span className={styles.subsectionContentItemValue}>
-                {["single", "married"][Math.floor(Math.random() * 1.99)]}
-              </span>
-            </div>
-
-            <div className={styles.subsectionContentItem}>
-              <span className={styles.subsectionContentItemLabel}>
-                Children
-              </span>
-              <span className={styles.subsectionContentItemValue}>
-                {["none", "1", "2", "2+"][Math.floor(Math.random() * 3.99)]}
-              </span>
-            </div>
-
-            <div className={styles.subsectionContentItem}>
-              <span className={styles.subsectionContentItemLabel}>
-                Type of Residence
-              </span>
-              <span className={styles.subsectionContentItemValue}>
-                {
-                  ["Parent's Apartment", "Personal Apartment"][
-                    Math.floor(Math.random() * 1.99)
-                  ]
-                }
-              </span>
-            </div>
-          </div>
-        </div> */}
           </>
         )}
 

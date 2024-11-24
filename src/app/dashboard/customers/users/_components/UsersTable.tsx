@@ -14,46 +14,44 @@ import Button from "@/app/_components/Button";
 const columnHelper = createColumnHelper<User>();
 
 const columns = [
-  columnHelper.accessor("orgName", {
-    id: "orgName",
+  columnHelper.accessor("personal_information", {
+    id: "organization",
     header: () => <span>Organization</span>,
     cell: (info) => (
-      <span className={styles.orgName}>
-        {info.getValue().split("-").join(" ")}
-      </span>
+      <span className={styles.orgName}>{info.getValue().organization}</span>
     ),
   }),
-  columnHelper.accessor((row) => row.userName, {
-    id: "userName",
+  columnHelper.accessor((row) => row.personal_information.username, {
+    id: "username",
     header: () => <span>Username</span>,
     cell: (info) => {
       console.log(info);
       return (
         <Link
           className={styles.tableLink}
-          href={`/dashboard/customers/users/${info.row.original.id}`}
+          href={`/dashboard/customers/users/${info.row.original.id - 1}`}
         >
           {info.getValue()}
         </Link>
       );
     },
   }),
-  columnHelper.accessor("email", {
+  columnHelper.accessor("personal_information", {
     id: "email",
     header: () => <span>Email</span>,
-    cell: (info) => <span>{info.renderValue()}</span>,
+    cell: (info) => <span>{info.renderValue()?.email_address}</span>,
   }),
-  columnHelper.accessor("phoneNumber", {
+  columnHelper.accessor("personal_information", {
     id: "phoneNumber",
     header: () => <span>Phone Number</span>,
-    cell: (info) => <span>{info.renderValue()}</span>,
+    cell: (info) => <span>{info.renderValue()?.phone_number}</span>,
   }),
-  columnHelper.accessor("createdAt", {
+  columnHelper.accessor("personal_information", {
     id: "createdAt",
     header: "Date Joined",
-    cell: (info) => <span>{info.renderValue()}</span>,
+    cell: (info) => <span>{info.renderValue()?.dateJoined}</span>,
   }),
-  columnHelper.accessor("lastActiveDate", {
+  columnHelper.accessor("status", {
     header: "Status",
     cell: (info) => {
       const statusArr = [

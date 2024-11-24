@@ -14,9 +14,7 @@ function Dashboard() {
   const { isPending, isLoading, error, data, isFetching } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch(
-        "https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users"
-      );
+      const res = await fetch("https://api.npoint.io/f665a31c4b7bcf6c36cf");
 
       return await res.json();
     },
@@ -67,7 +65,7 @@ function Dashboard() {
 
         {!isPending && !isLoading && !error && (
           <UsersTable
-            data={(!isPending && !isFetching && !error && data) || []}
+            data={(!isPending && !isFetching && !error && data.users) || []}
           />
         )}
 
