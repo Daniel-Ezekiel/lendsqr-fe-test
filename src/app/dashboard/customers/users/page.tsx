@@ -18,6 +18,8 @@ function Dashboard() {
 
       return await res.json();
     },
+    gcTime: Infinity,
+    staleTime: Infinity,
   });
 
   return (

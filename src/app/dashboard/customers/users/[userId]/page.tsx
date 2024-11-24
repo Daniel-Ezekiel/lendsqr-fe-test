@@ -34,6 +34,8 @@ function User() {
       );
       return await res.json();
     },
+    gcTime: Infinity,
+    staleTime: Infinity,
   });
 
   const user = !isPending && !isFetching && !error && (data as UserTypes);

@@ -6,15 +6,24 @@ interface ButtonTypes {
   className?: string;
   type?: "button" | "reset" | "submit";
   disabled?: boolean;
+  title?: string;
   onClick?: () => void;
 }
 
-function Button({ children, className, onClick, type, disabled }: ButtonTypes) {
+function Button({
+  children,
+  className,
+  onClick,
+  type,
+  title,
+  disabled,
+}: ButtonTypes) {
   return (
     <button
       className={`${className} ${styles.buttonDefault}`}
       onClick={onClick}
       type={type}
+      title={title}
       disabled={disabled}
     >
       {children}

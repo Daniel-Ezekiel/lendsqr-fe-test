@@ -19,8 +19,6 @@ function DashboardSideBar({
 }) {
   const router = useRouter();
   const pathName = usePathname();
-  const currentPath = pathName.slice(1).split("/");
-  console.log(currentPath);
   const [isLoggingOut, setIsLoggingOut] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
@@ -36,14 +34,14 @@ function DashboardSideBar({
       setError("");
 
       router.push("/");
+
+      setIsLoggingOut(false);
       return { isLoggingOut, isError, error };
     } catch (error) {
       setIsError(true);
       setError("There was an issue logging out...");
       return error;
     }
-
-    setIsLoggingOut(false);
   };
 
   return (

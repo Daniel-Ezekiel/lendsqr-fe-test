@@ -1,0 +1,65 @@
+@use "./variables.module.scss";
+@use "./mixins.module.scss";
+
+.paginationContainer {
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  div {
+    &:nth-child(2) {
+      place-self: end;
+    }
+  }
+
+  .buttonsContainer {
+    width: fit-content;
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    padding: 0 1.25rem;
+
+    .backNextButtons {
+      border-radius: 0.4rem;
+      padding: 0.25rem;
+      background-color: #213f7d1a;
+      width: 2.8rem;
+      height: 2.8rem;
+    }
+
+    .paginationButtonsContainer {
+      overflow-x: scroll;
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      gap: 1.2rem;
+
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      .paginationButton {
+        color: #979daf;
+        padding: 0.5rem;
+        font-size: 1.6rem;
+      }
+
+      .paginationButtonActive {
+        color: variables.$color__primary;
+      }
+
+      @include mixins.tablet() {
+        max-width: 30rem;
+      }
+    }
+  }
+}

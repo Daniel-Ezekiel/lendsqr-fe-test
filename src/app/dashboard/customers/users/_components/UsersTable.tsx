@@ -10,6 +10,7 @@ import Link from "next/link";
 import User from "@/app/_types/user.types";
 import { EllipsisVerticalIcon } from "lucide-react";
 import Button from "@/app/_components/Button";
+import { DataTablePagination } from "./table-pagination";
 
 const columnHelper = createColumnHelper<User>();
 
@@ -18,18 +19,17 @@ const columns = [
     id: "organization",
     header: () => <span>Organization</span>,
     cell: (info) => (
-      <span className={styles.orgName}>{info.getValue().organization}</span>
+      <span className={styles.orgName}>{info.getValue()?.organization}</span>
     ),
   }),
-  columnHelper.accessor((row) => row.personal_information.username, {
+  columnHelper.accessor((row) => row?.personal_information?.username, {
     id: "username",
     header: () => <span>Username</span>,
     cell: (info) => {
-      console.log(info);
       return (
         <Link
           className={styles.tableLink}
-          href={`/dashboard/customers/users/${info.row.original.id - 1}`}
+          href={`/dashboard/customers/users/${info?.row?.original?.id - 1}`}
         >
           {info.getValue()}
         </Link>
@@ -54,20 +54,11 @@ const columns = [
   columnHelper.accessor("status", {
     header: "Status",
     cell: (info) => {
-      const statusArr = [
-        "active",
-        "inactive",
-        "blacklisted",
-        "pending",
-        info.renderValue(),
-      ];
-      const selectedStatus = statusArr[Math.floor(Math.random() * 4)];
-
       return (
         <span
-          className={`${styles.status} ${styles[selectedStatus as string]}`}
+          className={`${styles.status} ${styles[info.renderValue() as string]}`}
         >
-          {selectedStatus}
+          {info.renderValue()}
         </span>
       );
     },
@@ -76,9 +67,11 @@ const columns = [
     id: "options",
     header: "",
     cell: () => (
-      <Button type='button'>
-        <EllipsisVerticalIcon color='#545f7d' />
-      </Button>
+      <div className={styles.optionsContainer}>
+        <Button type='button'>
+          <EllipsisVerticalIcon color='#545f7d' />
+        </Button>
+      </div>
     ),
   }),
 ];
@@ -92,54 +85,51 @@ function UsersTable({ data }: { data: User[] }) {
   });
 
   return (
-    <div className={styles.tableContainer}>
-      <table className={styles.table}>
-        <thead className={styles.thead}>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <th key={header.id} className={styles.th}>
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody className={styles.tbody}>
-          {table.getRowModel().rows.map((row) => (
-            <tr key={row.id} className={styles.tr}>
-              {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className={styles.td}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-        {/* <tfoot>
-          {table.getFooterGroups().map((footerGroup) => (
-            <tr key={footerGroup.id}>
-              {footerGroup.headers.map((header) => (
-                <th key={header.id}>
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(
-                        header.column.columnDef.footer,
-                        header.getContext()
-                      )}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </tfoot> */}
-      </table>
-      <div className='h-4' />
-    </div>
+    <>
+      <div className={styles.tableContainer}>
+        <table className={styles.table}>
+          <thead className={styles.thead}>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <tr key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <th key={header.id} className={styles.th}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
+          <tbody className={styles.tbody}>
+            {table.getRowModel().rows.map((row) => (
+              <tr key={row.id} className={styles.tr}>
+                {row.getVisibleCells().map((cell) => (
+                  <td key={cell.id} className={styles.td}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div className='h-4'>
+        {
+          <DataTablePagination
+            table={table}
+            // title={(tableFor as string) || currPage}
+            count={data.length}
+            hasNext={false}
+            isFetchingNext={false}
+            // handleGetNextPage={getNextPage}
+          />
+        }
+      </div>
+    </>
   );
 }
 

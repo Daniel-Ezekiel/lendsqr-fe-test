@@ -31,25 +31,26 @@ function UserInfoSection({
 
       {title === "Guarantor" && (
         <div className={styles.guarantorSubsectionContent}>
-          {guarantorDetailsArr?.map((guarantorDetails, i) => (
-            <div key={i} className={styles.guarantorDetailsContainer}>
-              {guarantorDetails.map((detail, i) => (
-                <div
-                  className={`${styles.subsectionContentItem} ${
-                    i === 1 && styles.subsectionContentItem2
-                  }`}
-                  key={i}
-                >
-                  <span className={styles.subsectionContentItemLabel}>
-                    {detail.name}
-                  </span>
-                  <span className={styles.subsectionContentItemValue}>
-                    {detail.value}
-                  </span>
-                </div>
-              ))}
-            </div>
-          ))}
+          {guarantorDetailsArr &&
+            guarantorDetailsArr?.map((guarantorDetails, i) => (
+              <div key={i} className={styles.guarantorDetailsContainer}>
+                {guarantorDetails.map((detail, i) => (
+                  <div
+                    className={`${styles.subsectionContentItem} ${
+                      i === 1 && styles.subsectionContentItem2
+                    }`}
+                    key={i}
+                  >
+                    <span className={styles.subsectionContentItemLabel}>
+                      {detail.name}
+                    </span>
+                    <span className={styles.subsectionContentItemValue}>
+                      {detail.value}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            ))}
         </div>
       )}
 
