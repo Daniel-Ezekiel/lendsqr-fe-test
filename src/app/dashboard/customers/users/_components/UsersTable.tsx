@@ -8,6 +8,8 @@ import {
 import styles from "@/app/_sass/table.module.scss";
 import Link from "next/link";
 import User from "@/app/_types/user.types";
+import { EllipsisVerticalIcon } from "lucide-react";
+import Button from "@/app/_components/Button";
 
 const columnHelper = createColumnHelper<User>();
 
@@ -53,6 +55,33 @@ const columns = [
   }),
   columnHelper.accessor("lastActiveDate", {
     header: "Status",
+    cell: (info) => {
+      const statusArr = [
+        "active",
+        "inactive",
+        "blacklisted",
+        "pending",
+        info.renderValue(),
+      ];
+      const selectedStatus = statusArr[Math.floor(Math.random() * 4)];
+
+      return (
+        <span
+          className={`${styles.status} ${styles[selectedStatus as string]}`}
+        >
+          {selectedStatus}
+        </span>
+      );
+    },
+  }),
+  columnHelper.accessor(() => "", {
+    id: "options",
+    header: "",
+    cell: () => (
+      <Button type='button'>
+        <EllipsisVerticalIcon color='#545f7d' />
+      </Button>
+    ),
   }),
 ];
 

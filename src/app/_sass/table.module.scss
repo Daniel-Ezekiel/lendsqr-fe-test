@@ -6,6 +6,13 @@
   width: 100%;
   table-layout: fixed;
   overflow: auto;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   .table {
     width: 100%;
@@ -38,5 +45,30 @@
 
   .tableLink {
     color: variables.$color__primary-light;
+  }
+
+  .status {
+    border-radius: 5rem;
+    padding: 0.5rem 1.25rem;
+  }
+
+  .active {
+    background-color: #f3fcf6;
+    color: variables.$color__tag-green;
+  }
+
+  .inactive {
+    background-color: #f5f5f7;
+    color: variables.$color__tag-gray;
+  }
+
+  .blacklisted {
+    background-color: #fce6eb;
+    color: variables.$color__tag-red;
+  }
+
+  .pending {
+    background-color: #fdf7e5;
+    color: variables.$color__tag-yellow;
   }
 }
