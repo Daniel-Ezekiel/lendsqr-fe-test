@@ -256,6 +256,14 @@ function User() {
             {(isPending || isLoading) && !error && (
               <Skeleton heightClass='50rem' />
             )}
+
+            {!isPending && !isLoading && error && (
+              <>
+                <h1>There was an issue fetching...</h1>
+                <p>Check your internet connection and try again</p>
+              </>
+            )}
+
             {!isPending && !isLoading && !error && (
               <>
                 <UserInfoSection

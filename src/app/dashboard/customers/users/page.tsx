@@ -70,6 +70,13 @@ function Dashboard() {
             data={(!isPending && !isFetching && !error && data) || []}
           />
         )}
+
+        {!isPending && !isLoading && error && (
+          <>
+            <h1>There was an issue fetching...</h1>
+            <p>Check your internet connection and try again</p>
+          </>
+        )}
       </section>
     </DashboardLayout>
   );
