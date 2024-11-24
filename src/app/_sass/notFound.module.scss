@@ -1,0 +1,53 @@
+@use "./variables.module.scss";
+
+.container {
+  min-height: 100dvh;
+  padding: 1.6rem;
+  display: grid;
+  place-items: center;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    color: variables.$color__primary;
+    text-align: center;
+
+    .title,
+    .description {
+      margin: 0.5rem 0;
+    }
+
+    .title {
+      font-size: 2.8rem;
+    }
+
+    .linksContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.25rem;
+
+      .link {
+        border-radius: 0.8rem;
+        padding: 1.25rem 2rem;
+        background-color: variables.$color__secondary;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+
+        color: #fff;
+        text-decoration: none;
+
+        &:first-child {
+          background-color: transparent;
+          color: variables.$color__primary;
+        }
+      }
+    }
+  }
+}
