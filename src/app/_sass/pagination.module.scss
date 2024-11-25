@@ -2,16 +2,29 @@
 @use "./mixins.module.scss";
 
 .paginationContainer {
-  margin-top: 2.5rem;
+  margin-top: 4.5rem;
   display: grid;
-  grid-template-columns: auto 1fr;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
+  gap: 2rem;
+
+  @include mixins.tablet() {
+    grid-template-columns: auto 1fr;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+  }
 
   div {
+    @include mixins.mobileLandscape() {
+      display: flex;
+      place-self: center;
+    }
+
     &:nth-child(2) {
-      place-self: end;
+      place-self: start;
+      @include mixins.mobileLandscape() {
+        place-self: end;
+      }
     }
   }
 
@@ -22,8 +35,10 @@
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    margin: 2rem 0;
-    padding: 0 1.25rem;
+
+    @include mixins.tablet() {
+      padding: 0 1.25rem;
+    }
 
     .backNextButtons {
       border-radius: 0.4rem;
@@ -34,6 +49,7 @@
     }
 
     .paginationButtonsContainer {
+      max-width: 15rem;
       overflow-x: scroll;
       -ms-overflow-style: none; /* IE and Edge */
       scrollbar-width: none; /* Firefox */
@@ -57,7 +73,7 @@
         color: variables.$color__primary;
       }
 
-      @include mixins.tablet() {
+      @include mixins.mobileLandscape() {
         max-width: 30rem;
       }
     }
