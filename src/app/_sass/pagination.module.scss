@@ -26,6 +26,21 @@
         place-self: end;
       }
     }
+
+    .rowsCountTracker {
+      color: variables.$color__primary;
+
+      .rowsCountSelect {
+        background-color: #e5e8ee;
+        border: none;
+        border-radius: 0.4rem;
+        padding: 0.75rem 1rem;
+
+        font-family: var(--font-work-sans);
+        font-size: 1.6rem;
+        color: variables.$color__primary;
+      }
+    }
   }
 
   .buttonsContainer {
@@ -49,7 +64,7 @@
     }
 
     .paginationButtonsContainer {
-      max-width: 15rem;
+      max-width: 16rem;
       overflow-x: scroll;
       -ms-overflow-style: none; /* IE and Edge */
       scrollbar-width: none; /* Firefox */
@@ -70,11 +85,12 @@
       }
 
       .paginationButtonActive {
+        font-weight: 700;
         color: variables.$color__primary;
       }
 
       @include mixins.mobileLandscape() {
-        max-width: 30rem;
+        max-width: 32rem;
       }
     }
   }
