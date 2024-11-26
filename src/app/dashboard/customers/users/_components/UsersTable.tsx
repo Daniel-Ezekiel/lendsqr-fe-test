@@ -8,23 +8,24 @@ import {
 import styles from "@/app/_sass/table.module.scss";
 import Link from "next/link";
 import User from "@/app/_types/user.types";
-import { EllipsisVerticalIcon } from "lucide-react";
+import { EllipsisVerticalIcon, ListFilterIcon } from "lucide-react";
 import Button from "@/app/_components/Button";
 import { DataTablePagination } from "./table-pagination";
+import ThCell from "./ThCell";
 
 const columnHelper = createColumnHelper<User>();
 
 const columns = [
   columnHelper.accessor("personal_information", {
     id: "organization",
-    header: () => <span>Organization</span>,
+    header: () => <ThCell cellTitle='Organization' />,
     cell: (info) => (
       <span className={styles.orgName}>{info.getValue()?.organization}</span>
     ),
   }),
   columnHelper.accessor((row) => row?.personal_information?.username, {
     id: "username",
-    header: () => <span>Username</span>,
+    header: () => <ThCell cellTitle='Username' />,
     cell: (info) => {
       return (
         <Link
@@ -38,21 +39,21 @@ const columns = [
   }),
   columnHelper.accessor("personal_information", {
     id: "email",
-    header: () => <span>Email</span>,
+    header: () => <ThCell cellTitle='Email' />,
     cell: (info) => <span>{info.renderValue()?.email_address}</span>,
   }),
   columnHelper.accessor("personal_information", {
     id: "phoneNumber",
-    header: () => <span>Phone Number</span>,
+    header: () => <ThCell cellTitle='Phone Number' />,
     cell: (info) => <span>{info.renderValue()?.phone_number}</span>,
   }),
   columnHelper.accessor("personal_information", {
     id: "createdAt",
-    header: "Date Joined",
+    header: () => <ThCell cellTitle='Date Joined' />,
     cell: (info) => <span>{info.renderValue()?.dateJoined}</span>,
   }),
   columnHelper.accessor("status", {
-    header: "Status",
+    header: () => <ThCell cellTitle='Status' />,
     cell: (info) => {
       return (
         <span

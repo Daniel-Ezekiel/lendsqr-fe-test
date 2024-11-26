@@ -1,0 +1,11 @@
+@use "./variables.module.scss";
+
+.thCell {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+
+  .thCellButton {
+    color: variables.$color__primary;
+  }
+}
