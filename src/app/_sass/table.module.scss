@@ -45,6 +45,37 @@
       padding: 2rem 1.25rem;
       text-transform: capitalize;
       color: variables.$color__primary-light;
+
+      .optionsContainer {
+        position: relative;
+
+        .optionMenuContainer {
+          display: none;
+          position: absolute;
+          width: max-content;
+          right: 0;
+          border-radius: 0.4rem;
+          padding: 2rem;
+          background-color: #fff;
+          box-shadow: 3px 5px 20px 0px rgba(0, 0, 0, 0.0392156863);
+          z-index: 1;
+
+          .optionMenuButton {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: variables.$color__primary;
+          }
+        }
+
+        .optionMenuContainer.active {
+          display: flex;
+          flex-direction: column;
+          align-items: start;
+          justify-content: center;
+          gap: 1.5rem;
+        }
+      }
     }
   }
 

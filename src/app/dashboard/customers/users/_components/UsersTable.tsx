@@ -8,7 +8,12 @@ import {
 import styles from "@/app/_sass/table.module.scss";
 import Link from "next/link";
 import User from "@/app/_types/user.types";
-import { EllipsisVerticalIcon, ListFilterIcon } from "lucide-react";
+import {
+  EllipsisVerticalIcon,
+  EyeIcon,
+  UserRoundCheckIcon,
+  UserRoundXIcon,
+} from "lucide-react";
 import Button from "@/app/_components/Button";
 import { DataTablePagination } from "./table-pagination";
 import ThCell from "./ThCell";
@@ -16,14 +21,12 @@ import ThCell from "./ThCell";
 const columnHelper = createColumnHelper<User>();
 
 const columns = [
-  columnHelper.accessor("personal_information", {
+  columnHelper.accessor("personal_information.organization", {
     id: "organization",
     header: () => <ThCell cellTitle='Organization' />,
-    cell: (info) => (
-      <span className={styles.orgName}>{info.getValue()?.organization}</span>
-    ),
+    cell: (info) => <span className={styles.orgName}>{info.getValue()}</span>,
   }),
-  columnHelper.accessor((row) => row?.personal_information?.username, {
+  columnHelper.accessor("personal_information.username", {
     id: "username",
     header: () => <ThCell cellTitle='Username' />,
     cell: (info) => {
@@ -37,22 +40,23 @@ const columns = [
       );
     },
   }),
-  columnHelper.accessor("personal_information", {
-    id: "email",
+  columnHelper.accessor("personal_information.email_address", {
+    id: "email_address",
     header: () => <ThCell cellTitle='Email' />,
-    cell: (info) => <span>{info.renderValue()?.email_address}</span>,
+    cell: (info) => <span>{info.renderValue()}</span>,
   }),
-  columnHelper.accessor("personal_information", {
-    id: "phoneNumber",
+  columnHelper.accessor("personal_information.phone_number", {
+    id: "phone_number",
     header: () => <ThCell cellTitle='Phone Number' />,
-    cell: (info) => <span>{info.renderValue()?.phone_number}</span>,
+    cell: (info) => <span>{info.renderValue()}</span>,
   }),
-  columnHelper.accessor("personal_information", {
-    id: "createdAt",
+  columnHelper.accessor("personal_information.dateJoined", {
+    id: "dateJoined",
     header: () => <ThCell cellTitle='Date Joined' />,
-    cell: (info) => <span>{info.renderValue()?.dateJoined}</span>,
+    cell: (info) => <span>{info.renderValue()}</span>,
   }),
   columnHelper.accessor("status", {
+    id: "status",
     header: () => <ThCell cellTitle='Status' />,
     cell: (info) => {
       return (
@@ -64,16 +68,44 @@ const columns = [
       );
     },
   }),
-  columnHelper.accessor(() => "", {
+  columnHelper.display({
     id: "options",
-    header: "",
-    cell: () => (
-      <div className={styles.optionsContainer}>
-        <Button type='button'>
-          <EllipsisVerticalIcon color='#545f7d' />
-        </Button>
-      </div>
-    ),
+    cell: () => {
+      let showOptions: boolean = false;
+
+      return (
+        <div className={`${styles.optionsContainer}`}>
+          <Button
+            type='button'
+            className={`${styles.optionsButton}`}
+            onClick={() =>
+              showOptions ? (showOptions = false) : (showOptions = true)
+            }
+          >
+            <EllipsisVerticalIcon color='#545f7d' />
+          </Button>
+
+          <div
+            className={`${styles.optionMenuContainer} ${
+              showOptions && styles.active
+            }`}
+          >
+            <Button type='button' className={`${styles.optionMenuButton}`}>
+              <EyeIcon size={20} />
+              View Details
+            </Button>
+            <Button type='button' className={`${styles.optionMenuButton}`}>
+              <UserRoundXIcon size={20} />
+              Blacklist User
+            </Button>
+            <Button type='button' className={`${styles.optionMenuButton}`}>
+              <UserRoundCheckIcon size={20} />
+              Activate User
+            </Button>
+          </div>
+        </div>
+      );
+    },
   }),
 ];
 

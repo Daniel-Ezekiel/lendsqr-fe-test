@@ -18,6 +18,7 @@ function Button({
   title,
   disabled,
 }: ButtonTypes) {
+  console.log(className);
   return (
     <button
       className={`${className} ${styles.buttonDefault}`}
