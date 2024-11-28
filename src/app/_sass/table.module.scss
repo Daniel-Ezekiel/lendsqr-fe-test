@@ -66,6 +66,11 @@
             gap: 1rem;
             color: variables.$color__primary;
           }
+
+          .optionMenuLink {
+            text-decoration: none;
+            padding: 0 0.5rem;
+          }
         }
 
         .optionMenuContainer.active {

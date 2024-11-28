@@ -8,15 +8,9 @@ import {
 import styles from "@/app/_sass/table.module.scss";
 import Link from "next/link";
 import User from "@/app/_types/user.types";
-import {
-  EllipsisVerticalIcon,
-  EyeIcon,
-  UserRoundCheckIcon,
-  UserRoundXIcon,
-} from "lucide-react";
-import Button from "@/app/_components/Button";
 import { DataTablePagination } from "./table-pagination";
 import ThCell from "./ThCell";
+import OptionsButton from "./OptionsButton";
 
 const columnHelper = createColumnHelper<User>();
 
@@ -70,40 +64,13 @@ const columns = [
   }),
   columnHelper.display({
     id: "options",
-    cell: () => {
-      let showOptions: boolean = false;
-
+    cell: (info) => {
       return (
-        <div className={`${styles.optionsContainer}`}>
-          <Button
-            type='button'
-            className={`${styles.optionsButton}`}
-            onClick={() =>
-              showOptions ? (showOptions = false) : (showOptions = true)
-            }
-          >
-            <EllipsisVerticalIcon color='#545f7d' />
-          </Button>
-
-          <div
-            className={`${styles.optionMenuContainer} ${
-              showOptions && styles.active
-            }`}
-          >
-            <Button type='button' className={`${styles.optionMenuButton}`}>
-              <EyeIcon size={20} />
-              View Details
-            </Button>
-            <Button type='button' className={`${styles.optionMenuButton}`}>
-              <UserRoundXIcon size={20} />
-              Blacklist User
-            </Button>
-            <Button type='button' className={`${styles.optionMenuButton}`}>
-              <UserRoundCheckIcon size={20} />
-              Activate User
-            </Button>
-          </div>
-        </div>
+        <OptionsButton
+          userDetailsURL={`/dashboard/customers/users/${
+            info?.row?.original?.id - 1
+          }`}
+        />
       );
     },
   }),
