@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "@/app/_sass/button.module.scss";
 
 interface ButtonTypes {

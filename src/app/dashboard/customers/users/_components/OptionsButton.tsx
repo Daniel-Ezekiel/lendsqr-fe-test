@@ -7,25 +7,30 @@ import {
   UserRoundXIcon,
 } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useRef } from "react";
 
 function OptionsButton({ userDetailsURL }: { userDetailsURL: string }) {
-  const [showOptions, setShowOptions] = useState<boolean>(false);
+  const optionsMenuRef = useRef<HTMLDivElement>(null);
+
+  const toggleOptionsMenu = () => {
+    if (optionsMenuRef.current?.classList.contains(`${styles.active}`)) {
+      optionsMenuRef.current?.classList.remove(`${styles.active}`);
+    } else {
+      optionsMenuRef.current?.classList.add(`${styles.active}`);
+    }
+  };
+
   return (
     <div className={`${styles.optionsContainer}`}>
       <Button
         type='button'
         className={`${styles.optionsButton}`}
-        onClick={() => setShowOptions(!showOptions)}
+        onClick={toggleOptionsMenu}
       >
         <EllipsisVerticalIcon color='#545f7d' />
       </Button>
 
-      <div
-        className={`${styles.optionMenuContainer} ${
-          showOptions && styles.active
-        }`}
-      >
+      <div className={`${styles.optionMenuContainer}`} ref={optionsMenuRef}>
         <Link
           href={userDetailsURL}
           className={`${styles.optionMenuButton} ${styles.optionMenuLink}`}
